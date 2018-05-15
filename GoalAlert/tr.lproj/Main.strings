@@ -1,0 +1,162 @@
+
+/* Class = "UIButton"; normalTitle = "+2,5"; ObjectID = "032-pm-ghi"; */
+"032-pm-ghi.normalTitle" = "+2,5";
+
+/* Class = "UIButton"; normalTitle = "HOME WIN"; ObjectID = "04m-dz-a5B"; */
+"04m-dz-a5B.normalTitle" = "HOME WIN";
+
+/* Class = "UILabel"; text = "Total Goal"; ObjectID = "0Qc-X8-hts"; */
+"0Qc-X8-hts.text" = "Total Goal";
+
+/* Class = "UILabel"; text = "V1"; ObjectID = "0R3-kR-tc4"; */
+"0R3-kR-tc4.text" = "V1";
+
+/* Class = "UILabel"; text = "Your Alert:"; ObjectID = "1rp-ca-AaH"; */
+"1rp-ca-AaH.text" = "Your Alert:";
+
+/* Class = "UIButton"; normalTitle = "X"; ObjectID = "3Ij-ZS-wtm"; */
+"3Ij-ZS-wtm.normalTitle" = "X";
+
+/* Class = "UILabel"; text = "Alarm 1"; ObjectID = "3W7-nk-0XN"; */
+"3W7-nk-0XN.text" = "Alarm 1";
+
+/* Class = "UIButton"; normalTitle = "<"; ObjectID = "6LZ-jl-DwV"; */
+"6LZ-jl-DwV.normalTitle" = "<";
+
+/* Class = "UINavigationItem"; title = "Create Alert"; ObjectID = "6N6-b7-vqf"; */
+"6N6-b7-vqf.title" = "Create Alert";
+
+/* Class = "UILabel"; text = "Galatasarayy-"; ObjectID = "6SV-92-Jwg"; */
+"6SV-92-Jwg.text" = "Galatasarayy-";
+
+/* Class = "UILabel"; text = "15:"; ObjectID = "6T7-fP-A86"; */
+"6T7-fP-A86.text" = "15:";
+
+/* Class = "UIButton"; normalTitle = "-4,5"; ObjectID = "94B-pZ-G4V"; */
+"94B-pZ-G4V.normalTitle" = "-4,5";
+
+/* Class = "UIButton"; normalTitle = "+ 1,5"; ObjectID = "ABs-q8-zm5"; */
+"ABs-q8-zm5.normalTitle" = "+ 1,5";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "BBN-XH-ucl"; */
+"BBN-XH-ucl.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "BvM-Rn-AuE"; */
+"BvM-Rn-AuE.title" = "Back";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "EjR-pu-y4N"; */
+"EjR-pu-y4N.text" = "Date";
+
+/* Class = "UITabBarItem"; title = "ALL RESULTS"; ObjectID = "GaV-Mx-fv6"; */
+"GaV-Mx-fv6.title" = "ALL RESULTS";
+
+/* Class = "UIButton"; normalTitle = "SET ALERT"; ObjectID = "J3h-7v-foM"; */
+"J3h-7v-foM.normalTitle" = "SET ALERT";
+
+/* Class = "UILabel"; text = "Fenerbahce"; ObjectID = "J96-6b-ONo"; */
+"J96-6b-ONo.text" = "Fenerbahce";
+
+/* Class = "UIButton"; normalTitle = "-5,5"; ObjectID = "JO9-6W-tHc"; */
+"JO9-6W-tHc.normalTitle" = "-5,5";
+
+/* Class = "UIButton"; normalTitle = "SCORE"; ObjectID = "MXH-G3-6JM"; */
+"MXH-G3-6JM.normalTitle" = "SCORE";
+
+/* Class = "UIButton"; normalTitle = "NO GOAL"; ObjectID = "Mlt-ZY-vfl"; */
+"Mlt-ZY-vfl.normalTitle" = "NO GOAL";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "O6n-gY-HdA"; */
+"O6n-gY-HdA.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "LIVE SCORES"; ObjectID = "OFv-gM-Y0h"; */
+"OFv-gM-Y0h.title" = "LIVE SCORES";
+
+/* Class = "UIButton"; normalTitle = ">"; ObjectID = "Qx3-IS-Jhg"; */
+"Qx3-IS-Jhg.normalTitle" = ">";
+
+/* Class = "UIButton"; normalTitle = "2,5+"; ObjectID = "SLl-UP-bji"; */
+"SLl-UP-bji.normalTitle" = "2,5+";
+
+/* Class = "UILabel"; text = "00"; ObjectID = "UVj-W8-29p"; */
+"UVj-W8-29p.text" = "00";
+
+/* Class = "UILabel"; text = "L5"; ObjectID = "V2r-O8-ua6"; */
+"V2r-O8-ua6.text" = "L5";
+
+/* Class = "UIButton"; normalTitle = "-2,5"; ObjectID = "V6a-da-Rar"; */
+"V6a-da-Rar.normalTitle" = "-2,5";
+
+/* Class = "UIButton"; normalTitle = "4,5+"; ObjectID = "XMj-rh-sMS"; */
+"XMj-rh-sMS.normalTitle" = "4,5+";
+
+/* Class = "UIButton"; normalTitle = "AWAY WIN"; ObjectID = "XUG-Em-11p"; */
+"XUG-Em-11p.normalTitle" = "AWAY WIN";
+
+/* Class = "UIButton"; normalTitle = "CLEAR"; ObjectID = "Xcp-kE-jeA"; */
+"Xcp-kE-jeA.normalTitle" = "CLEAR";
+
+/* Class = "UILabel"; text = "55'"; ObjectID = "YTK-V3-rna"; */
+"YTK-V3-rna.text" = "55'";
+
+/* Class = "UIButton"; normalTitle = "0,5+"; ObjectID = "Yld-wm-y4f"; */
+"Yld-wm-y4f.normalTitle" = "0,5+";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "cBx-Ha-lMt"; */
+"cBx-Ha-lMt.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "WIN TO NIL"; ObjectID = "d7e-YC-UXI"; */
+"d7e-YC-UXI.normalTitle" = "WIN TO NIL";
+
+/* Class = "UITabBarItem"; title = "MY ALERTS"; ObjectID = "eLA-J9-VJ8"; */
+"eLA-J9-VJ8.title" = "MY ALERTS";
+
+/* Class = "UIButton"; normalTitle = "BTTS YES"; ObjectID = "f93-Fq-Ybr"; */
+"f93-Fq-Ybr.normalTitle" = "BTTS YES";
+
+/* Class = "UIButton"; normalTitle = "<"; ObjectID = "gIG-Xf-24E"; */
+"gIG-Xf-24E.normalTitle" = "<";
+
+/* Class = "UIButton"; normalTitle = "1,5+"; ObjectID = "h7R-ZX-d8h"; */
+"h7R-ZX-d8h.normalTitle" = "1,5+";
+
+/* Class = "UIButton"; normalTitle = "-1,5"; ObjectID = "hBM-tN-w1e"; */
+"hBM-tN-w1e.normalTitle" = "-1,5";
+
+/* Class = "UIButton"; normalTitle = "-3,5"; ObjectID = "hX4-hp-bF2"; */
+"hX4-hp-bF2.normalTitle" = "-3,5";
+
+/* Class = "UIButton"; normalTitle = ">"; ObjectID = "l17-xG-8Hb"; */
+"l17-xG-8Hb.normalTitle" = ">";
+
+/* Class = "UIButton"; normalTitle = "+ 0,5"; ObjectID = "oUp-P3-zVy"; */
+"oUp-P3-zVy.normalTitle" = "+ 0,5";
+
+/* Class = "UITabBarItem"; title = "NEXT MATCHES"; ObjectID = "oWH-Jc-zS2"; */
+"oWH-Jc-zS2.title" = "NEXT MATCHES";
+
+/* Class = "UINavigationItem"; title = "ALERT"; ObjectID = "onk-BZ-dQ1"; */
+"onk-BZ-dQ1.title" = "ALERT";
+
+/* Class = "UIButton"; normalTitle = "BTTS NO"; ObjectID = "qdw-tn-MGd"; */
+"qdw-tn-MGd.normalTitle" = "BTTS NO";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "rRZ-kf-JCB"; */
+"rRZ-kf-JCB.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "3,5+"; ObjectID = "smq-Ah-XF0"; */
+"smq-Ah-XF0.normalTitle" = "3,5+";
+
+/* Class = "UILabel"; text = "------------------------------"; ObjectID = "uLM-ka-FfS"; */
+"uLM-ka-FfS.text" = "------------------------------";
+
+/* Class = "UIButton"; normalTitle = "NO GOAL"; ObjectID = "wGT-7W-L3t"; */
+"wGT-7W-L3t.normalTitle" = "NO GOAL";
+
+/* Class = "UIButton"; normalTitle = "DRAW"; ObjectID = "wR2-gi-hiO"; */
+"wR2-gi-hiO.normalTitle" = "DRAW";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zPd-UE-shF"; */
+"zPd-UE-shF.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zUi-re-D4g"; */
+"zUi-re-D4g.text" = "Label";
