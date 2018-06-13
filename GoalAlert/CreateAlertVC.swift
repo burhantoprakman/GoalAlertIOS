@@ -40,6 +40,7 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
    
     @IBOutlet weak var alertPickerView: UIPickerView!
     
+    @IBOutlet weak var bar: UINavigationBar!
     @IBOutlet weak var alertNB: UINavigationItem!
     @IBOutlet weak var backItem: UIBarButtonItem!
     var matchId : Int = 0
@@ -69,7 +70,7 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         score.setTitle(NSLocalizedString("score", comment: ""), for: .normal)
         noGoal.setTitle(NSLocalizedString("no_goal", comment: ""), for: .normal)
         
-        alertPickerView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2);
+        alertPickerView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5);
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg.jpg")!)
         if(isGeneric == true) {
             create_visitorTeam.isHidden = true
@@ -108,6 +109,14 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let str = pickerDataSource[row]
         return NSAttributedString(string: str, attributes: [NSForegroundColorAttributeName:UIColor.white])
+    }
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = (view as? UILabel) ?? UILabel()
+        label.font = UIFont(name: "System", size: 13.0)
+        label.text = pickerDataSource[row]
+        label.textColor = UIColor.white
+        label.textAlignment = .center
+        return label
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

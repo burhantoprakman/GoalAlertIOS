@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Social
+import Toaster
 
 class SettingssVC : UITableViewController,UIDocumentInteractionControllerDelegate {
     @IBOutlet var vibrationLabel: UILabel!
@@ -40,17 +41,19 @@ class SettingssVC : UITableViewController,UIDocumentInteractionControllerDelegat
     @IBAction func sendWhatsapp(_ sender: Any) {
         
         let msg = "APP STORE LINK"
-        let urlWhats = "whatsapp://send?text=\(msg)"
+        let escc = msg.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+        let url = URL(string: "whatsapp://send?text=\(escc)")
+    
         
-        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
-            if let whatsappURL = NSURL(string: urlString) {
-                if UIApplication.shared.canOpenURL(whatsappURL as URL) {
-                    UIApplication.shared.openURL(whatsappURL as URL)
+                if UIApplication.shared.canOpenURL(url! as URL) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url! as URL, options: [:], completionHandler: nil)
+                    } else {
+                        UIApplication.shared.openURL(url!)
+                   }
                 } else {
-                    print("please install watsapp")
+                    let alert = UIAlertView(title: NSLocalizedString("error", comment: ""), message: NSLocalizedString("whatsapp_error", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("ok", comment: ""))
                 }
-            }
-        }
     }
     @IBAction func sendTwitter(_ sender: Any) {
         
@@ -60,24 +63,21 @@ class SettingssVC : UITableViewController,UIDocumentInteractionControllerDelegat
             if let tweetShare = tweetShare {
                 tweetShare.setInitialText("Goal Alert")
                 tweetShare.add(UIImage(named: "stor.png")!)
-                tweetShare.add(URL(string: "APP STORE LINK"))
+                //tweetShare.add(URL(string: "APP STORE LINK"))
                 self.present(tweetShare, animated: true, completion: nil)
             }
         } else {
-            print("Not Available")
+            Toast(text: "Twitter not uploaded").show()
         }
         
     }
     @IBAction func sendInstagram(_ sender: Any) {
-        DispatchQueue.main.async {
-            
-            //Share To Instagram:
-            
+
             let instagramURL = URL(string: "instagram://app")
             
             if UIApplication.shared.canOpenURL(instagramURL!) {
-                var img : UIImage = UIImage(named: "stor.png")!
-                let imageData = UIImageJPEGRepresentation(img, 100)
+                let img : UIImage = UIImage(named: "stor.png")!
+                let imageData = UIImageJPEGRepresentation(img, 1.0)
                 
                 let writePath = (NSTemporaryDirectory() as NSString).appendingPathComponent("instagram.igo")
                 
@@ -98,14 +98,10 @@ class SettingssVC : UITableViewController,UIDocumentInteractionControllerDelegat
             
                 }
     
-        else{print(" Instagram is not installed ")}
+        else{
+                Toast(text: "Instagram not uploaded").show()
+                
         }
-
-        
-    }
+        }
   
-   
-    
-    
-    
 }

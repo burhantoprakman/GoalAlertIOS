@@ -27,7 +27,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="425"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nextmatchescell" id="ixz-ql-NeX" customClass="NextMatchesCell" customModule="GoalAlert" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nextmatchescell" id="ixz-ql-NeX" customClass="NextMatchesCell" customModule="GoalAlert" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ixz-ql-NeX" id="8qo-sa-oM1">
@@ -214,7 +214,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="335"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="alertcell" id="4ft-HM-4CQ" customClass="MyAlertCell" customModule="GoalAlert" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="alertcell" id="4ft-HM-4CQ" customClass="MyAlertCell" customModule="GoalAlert" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4ft-HM-4CQ" id="uTB-J4-WW1">
@@ -378,7 +378,7 @@
                                 <rect key="frame" x="0.0" y="191" width="320" height="258"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="livescorecell" rowHeight="36" id="NR8-yB-afh" customClass="LiveScoresCell" customModule="GoalAlert" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="livescorecell" rowHeight="36" id="NR8-yB-afh" customClass="LiveScoresCell" customModule="GoalAlert" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NR8-yB-afh" id="RBL-QU-oc5">
@@ -779,10 +779,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="r2.png" translatesAutoresizingMaskIntoConstraints="NO" id="69x-wU-Gdc">
-                                <rect key="frame" x="26" y="204" width="268" height="349"/>
+                                <rect key="frame" x="26" y="224" width="268" height="329"/>
                             </imageView>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXH-G3-6JM">
-                                <rect key="frame" x="193.5" y="249" width="67.5" height="43.5"/>
+                                <rect key="frame" x="193.5" y="269" width="67.5" height="40"/>
                                 <state key="normal" title="SCORE">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -791,7 +791,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGT-7W-L3t">
-                                <rect key="frame" x="59" y="292.5" width="67.5" height="44"/>
+                                <rect key="frame" x="59" y="309" width="67.5" height="39.5"/>
                                 <state key="normal" title="NO GOAL">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -800,7 +800,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yld-wm-y4f">
-                                <rect key="frame" x="126.5" y="292.5" width="67" height="44"/>
+                                <rect key="frame" x="126.5" y="309" width="67" height="39.5"/>
                                 <state key="normal" title="0,5+">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -809,7 +809,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7R-ZX-d8h">
-                                <rect key="frame" x="193.5" y="292.5" width="67.5" height="44"/>
+                                <rect key="frame" x="193.5" y="309" width="67.5" height="39.5"/>
                                 <state key="normal" title="1,5+">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -818,7 +818,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smq-Ah-XF0">
-                                <rect key="frame" x="126.5" y="336.5" width="67" height="44"/>
+                                <rect key="frame" x="126.5" y="348.5" width="67" height="40"/>
                                 <state key="normal" title="3,5+">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -827,7 +827,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMj-rh-sMS">
-                                <rect key="frame" x="193.5" y="336.5" width="67.5" height="44"/>
+                                <rect key="frame" x="193.5" y="348.5" width="67.5" height="40"/>
                                 <state key="normal" title="4,5+">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -836,7 +836,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hX4-hp-bF2">
-                                <rect key="frame" x="59" y="424.5" width="67.5" height="43.5"/>
+                                <rect key="frame" x="59" y="428" width="67.5" height="40"/>
                                 <state key="normal" title="3,5-">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -845,7 +845,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6a-da-Rar">
-                                <rect key="frame" x="193.5" y="380.5" width="67.5" height="44"/>
+                                <rect key="frame" x="193.5" y="388.5" width="67.5" height="39.5"/>
                                 <state key="normal" title="2,5-">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -854,7 +854,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLl-UP-bji">
-                                <rect key="frame" x="59" y="336.5" width="67.5" height="44"/>
+                                <rect key="frame" x="59" y="348.5" width="67.5" height="40"/>
                                 <state key="normal" title="2,5+">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -863,7 +863,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94B-pZ-G4V">
-                                <rect key="frame" x="126.5" y="424.5" width="67" height="43.5"/>
+                                <rect key="frame" x="126.5" y="428" width="67" height="40"/>
                                 <state key="normal" title="4,5-">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -872,7 +872,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdw-tn-MGd">
-                                <rect key="frame" x="59" y="249" width="67.5" height="43.5"/>
+                                <rect key="frame" x="59" y="269" width="67.5" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="BTTS NO">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -882,7 +882,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f93-Fq-Ybr">
-                                <rect key="frame" x="126.5" y="249" width="67" height="43.5"/>
+                                <rect key="frame" x="126.5" y="269" width="67" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="BTTS YES">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -892,7 +892,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFc-1o-qNd">
-                                <rect key="frame" x="59" y="380.5" width="67.5" height="44"/>
+                                <rect key="frame" x="59" y="388.5" width="67.5" height="39.5"/>
                                 <state key="normal" title="5,5+">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -901,7 +901,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBM-tN-w1e">
-                                <rect key="frame" x="126.5" y="380.5" width="67" height="44"/>
+                                <rect key="frame" x="126.5" y="388.5" width="67" height="39.5"/>
                                 <state key="normal" title="1,5-">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -910,7 +910,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JO9-6W-tHc">
-                                <rect key="frame" x="193.5" y="424.5" width="67.5" height="43.5"/>
+                                <rect key="frame" x="193.5" y="428" width="67.5" height="40"/>
                                 <state key="normal" title="5,5-">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -919,7 +919,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypj-rh-IAh">
-                                <rect key="frame" x="19" y="54" width="282" height="30"/>
+                                <rect key="frame" x="19" y="74" width="282" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Galatasaray-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6SV-92-Jwg">
                                         <rect key="frame" x="0.0" y="2" width="100" height="26"/>
@@ -982,13 +982,13 @@
                                 </constraints>
                             </view>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2b-D4-QPP">
-                                <rect key="frame" x="0.0" y="89" width="320" height="75"/>
+                                <rect key="frame" x="0.0" y="109" width="320" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="wAW-o0-56d"/>
                                 </constraints>
                             </pickerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U0W-HI-GTd" userLabel="youtAlertView">
-                                <rect key="frame" x="25" y="169" width="270" height="30"/>
+                                <rect key="frame" x="25" y="189" width="270" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etk-Qx-Mow">
                                         <rect key="frame" x="116" y="8" width="154" height="20"/>
@@ -1013,8 +1013,11 @@
                                     <constraint firstItem="etk-Qx-Mow" firstAttribute="centerY" secondItem="1rp-ca-AaH" secondAttribute="centerY" id="rgo-rx-KLb"/>
                                 </constraints>
                             </view>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tzc-Zl-3JI">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <navigationBar opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tzc-Zl-3JI">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.2918322686" green="0.60947328359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Title" id="i4Z-ZS-57T">
                                         <barButtonItem key="leftBarButtonItem" title="Item" id="6lk-Xe-0Cd">
@@ -1103,7 +1106,7 @@
                             <constraint firstItem="69x-wU-Gdc" firstAttribute="trailingMargin" secondItem="h7R-ZX-d8h" secondAttribute="trailing" constant="25" id="fef-Se-Qod"/>
                             <constraint firstAttribute="trailing" secondItem="tzc-Zl-3JI" secondAttribute="trailing" id="hCC-QN-zdx"/>
                             <constraint firstItem="V6a-da-Rar" firstAttribute="leading" secondItem="hBM-tN-w1e" secondAttribute="trailing" id="hh6-DP-4xl"/>
-                            <constraint firstItem="tzc-Zl-3JI" firstAttribute="top" secondItem="HHA-Wt-Ojk" secondAttribute="top" id="hxy-Dh-Sno"/>
+                            <constraint firstItem="tzc-Zl-3JI" firstAttribute="top" secondItem="HHA-Wt-Ojk" secondAttribute="topMargin" id="hxy-Dh-Sno"/>
                             <constraint firstItem="V6a-da-Rar" firstAttribute="height" secondItem="hBM-tN-w1e" secondAttribute="height" id="kR9-Zj-tcZ"/>
                             <constraint firstItem="U0W-HI-GTd" firstAttribute="top" secondItem="n2b-D4-QPP" secondAttribute="bottom" constant="5" id="kTe-IB-hBd"/>
                             <constraint firstItem="94B-pZ-G4V" firstAttribute="top" secondItem="hBM-tN-w1e" secondAttribute="bottom" id="kx3-6S-AI0"/>
@@ -1143,6 +1146,7 @@
                         <outlet property="arti45" destination="XMj-rh-sMS" id="8DQ-C0-V09"/>
                         <outlet property="arti55" destination="xFc-1o-qNd" id="O2R-nw-A9R"/>
                         <outlet property="backItem" destination="6lk-Xe-0Cd" id="vpv-sl-Sqw"/>
+                        <outlet property="bar" destination="tzc-Zl-3JI" id="xss-dF-bMn"/>
                         <outlet property="btts_no" destination="qdw-tn-MGd" id="lk9-Sg-uUN"/>
                         <outlet property="btts_yes" destination="f93-Fq-Ybr" id="JGN-0x-aXG"/>
                         <outlet property="create_LocalTeamScore" destination="M7q-B7-RsM" id="Amx-VV-ntI"/>
@@ -1488,7 +1492,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="425"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="resultcell" id="zFK-Ir-7xT" customClass="ResultCell" customModule="GoalAlert" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="resultcell" id="zFK-Ir-7xT" customClass="ResultCell" customModule="GoalAlert" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zFK-Ir-7xT" id="Nf8-eY-I0H">

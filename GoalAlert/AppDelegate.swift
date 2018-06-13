@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var mS = MyService()
-    var backgroundTask: UIBackgroundTaskIdentifier = 0
+    var background_task : UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
     
 
         
@@ -38,28 +38,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                         settings: onesignalInitSettings)
         
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
-        
-        // Recommend moving the below line to prompt for push after informing the user about
-        //   how your app will use them.
         OneSignal.promptForPushNotifications(userResponse: { accepted in
             print("User accepted notifications: \(accepted)")
         })
         
-        // Sync hashed email if you have a login system or collect it.
-        //   Will be used to reach the user at the most optimal time of day.
-        // OneSignal.syncHashedEmail(userEmail)
-        
-        //UIApplication.shared.setMinimumBackgroundFetchInterval(10)
-        
         
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        
+        
          UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+   
         
         mS.StartTimer()
      
-        NotificationCenter.default.addObserver(self, selector:#selector(AppDelegate.applicationWillTerminate(_:)), name:NSNotification.Name.UIApplicationWillTerminate, object:nil)
+        //NotificationCenter.default.addObserver(self, selector:#selector(AppDelegate.applicationWillTerminate(_:)), name:NSNotification.Name.UIApplicationWillTerminate, object:nil)
         
-        NotificationCenter.default.addObserver(self, selector:#selector(AppDelegate.applicationDidEnterBackground(_:)), name:NSNotification.Name.UIApplicationDidEnterBackground, object:nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(AppDelegate.applicationWillEnterForeground(_:)), name:NSNotification.Name.UIApplicationWillEnterForeground, object:nil)
    
         return true
 
@@ -68,19 +63,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
    
-       mS.StartTimer()
+       //mS.StartTimer()
     
-       
-       
     }
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    
+            self.mS.StartTimer()
+        if let vc = window?.rootViewController as? LiveScores{
+            vc.getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLive"))
+            completionHandler(.newData)
+        }
+        
+
+    }
+    
+    
+    func application(_ application: UIApplication,
+                              didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                              fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void){
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+ 
     func applicationDidEnterBackground(_ application: UIApplication) {
+        if let vc = window?.rootViewController as? LiveScores{
+            vc.getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLive"))
+        }
         mS.StartTimer()
         
     }
+ 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        print("FOREGROUND")
+        if let vc = window?.rootViewController as? LiveScores{
+            vc.getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLive"))
+        }
         mS.StartTimer()
     }
+
 
 }
 

@@ -279,17 +279,21 @@
 		6346852E20A1021F003BCE1D /* goal.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6346852B20A1021F003BCE1D /* goal.wav */; };
 		6346852F20A1021F003BCE1D /* success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6346852C20A1021F003BCE1D /* success.wav */; };
 		6346EE25201248E5004D1D5E /* SettingssVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346EE24201248E5004D1D5E /* SettingssVC.swift */; };
+		634E19E220BFD31A0022DC3C /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 634E19E120BFD31A0022DC3C /* NetworkExtension.framework */; };
 		634FB8C41FE00B11007CFF07 /* ResultPojo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634FB8C31FE00B11007CFF07 /* ResultPojo.swift */; };
 		634FB8C61FE00DCE007CFF07 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634FB8C51FE00DCE007CFF07 /* ResultCell.swift */; };
+		634FE08020ACC8270069EFA6 /* goalcaf.caf in Resources */ = {isa = PBXBuildFile; fileRef = 634FE07F20ACC8270069EFA6 /* goalcaf.caf */; };
+		634FE08120ACC8270069EFA6 /* goalcaf.caf in Resources */ = {isa = PBXBuildFile; fileRef = 634FE07F20ACC8270069EFA6 /* goalcaf.caf */; };
+		634FE08320ACC82E0069EFA6 /* successcaf.caf in Resources */ = {isa = PBXBuildFile; fileRef = 634FE08220ACC82E0069EFA6 /* successcaf.caf */; };
+		634FE08420ACC82E0069EFA6 /* successcaf.caf in Resources */ = {isa = PBXBuildFile; fileRef = 634FE08220ACC82E0069EFA6 /* successcaf.caf */; };
+		634FE08620ACC8340069EFA6 /* failedcaf.caf in Resources */ = {isa = PBXBuildFile; fileRef = 634FE08520ACC8340069EFA6 /* failedcaf.caf */; };
+		634FE08720ACC8340069EFA6 /* failedcaf.caf in Resources */ = {isa = PBXBuildFile; fileRef = 634FE08520ACC8340069EFA6 /* failedcaf.caf */; };
 		63526C8B1FD7F25700E25CB0 /* LiveScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63526C8A1FD7F25700E25CB0 /* LiveScoreCell.swift */; };
 		63526C8E1FD8486A00E25CB0 /* LiveScorePojo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63526C8D1FD8486A00E25CB0 /* LiveScorePojo.swift */; };
 		635362E72007A01E000C72E5 /* bellyellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 635362E62007A01D000C72E5 /* bellyellow.png */; };
 		635362E92007A4FA000C72E5 /* bell.png in Resources */ = {isa = PBXBuildFile; fileRef = 635362E82007A4F9000C72E5 /* bell.png */; };
 		6356D5DD204424F100150A26 /* cup.png in Resources */ = {isa = PBXBuildFile; fileRef = 6356D5DC204424F100150A26 /* cup.png */; };
 		635F7BEE1FEA8CAD007C7345 /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635F7BED1FEA8CAD007C7345 /* MyService.swift */; };
-		6363DDA020A693C7003AF751 /* failedcaf.caf in Resources */ = {isa = PBXBuildFile; fileRef = 6363DD9D20A693C6003AF751 /* failedcaf.caf */; };
-		6363DDA120A693C7003AF751 /* goalcaf.caf in Resources */ = {isa = PBXBuildFile; fileRef = 6363DD9E20A693C7003AF751 /* goalcaf.caf */; };
-		6363DDA220A693C7003AF751 /* successcaf.caf in Resources */ = {isa = PBXBuildFile; fileRef = 6363DD9F20A693C7003AF751 /* successcaf.caf */; };
 		636438721FE1738E009D70C4 /* NextMatchesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636438711FE1738E009D70C4 /* NextMatchesCell.swift */; };
 		636438741FE173A3009D70C4 /* NextMatchesPojo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636438731FE173A3009D70C4 /* NextMatchesPojo.swift */; };
 		636438761FE18D69009D70C4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636438751FE18D69009D70C4 /* Extensions.swift */; };
@@ -622,17 +626,18 @@
 		6346852B20A1021F003BCE1D /* goal.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = goal.wav; sourceTree = "<group>"; };
 		6346852C20A1021F003BCE1D /* success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = success.wav; sourceTree = "<group>"; };
 		6346EE24201248E5004D1D5E /* SettingssVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingssVC.swift; sourceTree = "<group>"; };
+		634E19E120BFD31A0022DC3C /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		634FB8C31FE00B11007CFF07 /* ResultPojo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultPojo.swift; sourceTree = "<group>"; };
 		634FB8C51FE00DCE007CFF07 /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
+		634FE07F20ACC8270069EFA6 /* goalcaf.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = goalcaf.caf; sourceTree = "<group>"; };
+		634FE08220ACC82E0069EFA6 /* successcaf.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = successcaf.caf; sourceTree = "<group>"; };
+		634FE08520ACC8340069EFA6 /* failedcaf.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = failedcaf.caf; sourceTree = "<group>"; };
 		63526C8A1FD7F25700E25CB0 /* LiveScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveScoreCell.swift; sourceTree = "<group>"; };
 		63526C8D1FD8486A00E25CB0 /* LiveScorePojo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveScorePojo.swift; sourceTree = "<group>"; };
 		635362E62007A01D000C72E5 /* bellyellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bellyellow.png; sourceTree = "<group>"; };
 		635362E82007A4F9000C72E5 /* bell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bell.png; sourceTree = "<group>"; };
 		6356D5DC204424F100150A26 /* cup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cup.png; path = ../../cup.png; sourceTree = "<group>"; };
 		635F7BED1FEA8CAD007C7345 /* MyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
-		6363DD9D20A693C6003AF751 /* failedcaf.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = failedcaf.caf; sourceTree = "<group>"; };
-		6363DD9E20A693C7003AF751 /* goalcaf.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = goalcaf.caf; sourceTree = "<group>"; };
-		6363DD9F20A693C7003AF751 /* successcaf.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = successcaf.caf; sourceTree = "<group>"; };
 		636438711FE1738E009D70C4 /* NextMatchesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextMatchesCell.swift; sourceTree = "<group>"; };
 		636438731FE173A3009D70C4 /* NextMatchesPojo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextMatchesPojo.swift; sourceTree = "<group>"; };
 		636438751FE18D69009D70C4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -685,6 +690,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F41532B786A796525C37AEB /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */,
+				634E19E220BFD31A0022DC3C /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,6 +708,7 @@
 		4809C585862F6B33D0D509B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				634E19E120BFD31A0022DC3C /* NetworkExtension.framework */,
 				AB983FFE101E91782E1F26D2 /* Pods_GoalAlert.framework */,
 				AB19E8918C1DE6CC3F919082 /* Pods_OneSignalNotificationServiceExtension.framework */,
 			);
@@ -1015,9 +1022,6 @@
 		637F243720076CBF00F57CF9 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				6363DD9D20A693C6003AF751 /* failedcaf.caf */,
-				6363DD9E20A693C7003AF751 /* goalcaf.caf */,
-				6363DD9F20A693C7003AF751 /* successcaf.caf */,
 				6346852A20A1021F003BCE1D /* failed.wav */,
 				6346852B20A1021F003BCE1D /* goal.wav */,
 				6346852C20A1021F003BCE1D /* success.wav */,
@@ -1093,6 +1097,9 @@
 				635AC03E1FE294A7002D21F4 /* MainVC */,
 				63526C8F1FD9720800E25CB0 /* Cells */,
 				63526C8C1FD8484700E25CB0 /* Pojo */,
+				634FE08520ACC8340069EFA6 /* failedcaf.caf */,
+				634FE08220ACC82E0069EFA6 /* successcaf.caf */,
+				634FE07F20ACC8270069EFA6 /* goalcaf.caf */,
 				638AA9331FD567E000BB37DB /* AppDelegate.swift */,
 				635F7BED1FEA8CAD007C7345 /* MyService.swift */,
 				6346EE24201248E5004D1D5E /* SettingssVC.swift */,
@@ -1181,6 +1188,9 @@
 							com.apple.Keychain = {
 								enabled = 1;
 							};
+							com.apple.NetworkExtensions.iOS = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1196,6 +1206,9 @@
 							};
 							com.apple.Keychain = {
 								enabled = 1;
+							};
+							com.apple.NetworkExtensions.iOS = {
+								enabled = 0;
 							};
 							com.apple.Push = {
 								enabled = 1;
@@ -1228,6 +1241,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				634FE08120ACC8270069EFA6 /* goalcaf.caf in Resources */,
+				634FE08420ACC82E0069EFA6 /* successcaf.caf in Resources */,
+				634FE08720ACC8340069EFA6 /* failedcaf.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1237,12 +1253,10 @@
 			files = (
 				63009B2A1FFBAA39005BFE13 /* niger.png in Resources */,
 				63009B691FFBAA3A005BFE13 /* tajikistan.png in Resources */,
-				6363DDA220A693C7003AF751 /* successcaf.caf in Resources */,
 				63009B771FFBAA3A005BFE13 /* united_arab_emirates.png in Resources */,
 				63009ACA1FFBAA39005BFE13 /* el_salvador.png in Resources */,
 				63009ABE1FFBAA39005BFE13 /* world.png in Resources */,
 				63009ACF1FFBAA39005BFE13 /* ethiopia.png in Resources */,
-				6363DDA120A693C7003AF751 /* goalcaf.caf in Resources */,
 				63009A8B1FFBAA39005BFE13 /* anguilla.png in Resources */,
 				63865171200BA7E30049C651 /* splash_bg.jpg in Resources */,
 				63009AF51FFBAA39005BFE13 /* isle_of_man.png in Resources */,
@@ -1254,6 +1268,7 @@
 				63009ABB1FFBAA39005BFE13 /* ivory_coast.png in Resources */,
 				63009B741FFBAA3A005BFE13 /* tuvalu.png in Resources */,
 				635362E92007A4FA000C72E5 /* bell.png in Resources */,
+				634FE08320ACC82E0069EFA6 /* successcaf.caf in Resources */,
 				63009AB51FFBAA39005BFE13 /* cocos_keling_islands.png in Resources */,
 				63009B731FFBAA3A005BFE13 /* turks_and_caicos_islands.png in Resources */,
 				63009B141FFBAA39005BFE13 /* mauritania.png in Resources */,
@@ -1463,6 +1478,7 @@
 				63009AD81FFBAA39005BFE13 /* fyr_of_macedonia.png in Resources */,
 				63009B491FFBAA39005BFE13 /* saint_lucia.png in Resources */,
 				63009AA81FFBAA39005BFE13 /* burkina_faso.png in Resources */,
+				634FE08620ACC8340069EFA6 /* failedcaf.caf in Resources */,
 				63009B3C1FFBAA39005BFE13 /* pitcairn_islands.png in Resources */,
 				63009AFE1FFBAA39005BFE13 /* kosovo.png in Resources */,
 				63009B041FFBAA39005BFE13 /* lesotho.png in Resources */,
@@ -1519,11 +1535,11 @@
 				63009AB31FFBAA39005BFE13 /* china.png in Resources */,
 				63009B2D1FFBAA39005BFE13 /* norfolk_island.png in Resources */,
 				63009B871FFBAA3A005BFE13 /* zambia.png in Resources */,
-				6363DDA020A693C7003AF751 /* failedcaf.caf in Resources */,
 				63009B2C1FFBAA39005BFE13 /* niue.png in Resources */,
 				63009B5F1FFBAA39005BFE13 /* southafrica.png in Resources */,
 				63009AC11FFBAA39005BFE13 /* czech_republic.png in Resources */,
 				63009AD01FFBAA39005BFE13 /* eurocups.png in Resources */,
+				634FE08020ACC8270069EFA6 /* goalcaf.caf in Resources */,
 				63009AF71FFBAA39005BFE13 /* italy.png in Resources */,
 				63009AFA1FFBAA39005BFE13 /* jersey.png in Resources */,
 			);
@@ -1864,11 +1880,14 @@
 				CODE_SIGN_ENTITLEMENTS = GoalAlert/GoalAlert.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y532NB7998;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GoalAlert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vavien.agency.GoalAlert;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1882,11 +1901,14 @@
 				CODE_SIGN_ENTITLEMENTS = GoalAlert/GoalAlert.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y532NB7998;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GoalAlert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vavien.agency.GoalAlert;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

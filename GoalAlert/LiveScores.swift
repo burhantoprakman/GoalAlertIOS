@@ -331,6 +331,8 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
 
    
     func getLiveMatches(url : URL!){
+        
+        print("GET LIVE MATCHES")
        
         var liveArray  = [LiveScorePojo]()
         let session = URLSession.shared
@@ -642,6 +644,7 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
                                    liveArray.append(livepojo)
                                          }
                                     self.liveScoreTableView.reloadData()
+                                
                                     
                                     break
                                 }

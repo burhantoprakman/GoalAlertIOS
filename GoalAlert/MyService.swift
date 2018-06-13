@@ -31,10 +31,11 @@ class MyService: NSObject {
                 "contents": ["\(langStr ?? "en")": "\(localTeam) \(localScore)-\(visitorScore) \(visitorTeam)  \(minute)"],
                  "include_player_ids": ["\(oneSignalId)"],
                  "content_available" : true,
+                 "ios_sound" : "successcaf.caf",
                  "ios_badgeType" : "Increase",
                  "ios_badgeCount" : "1",
-                 "subtitle" : ["\(langStr ?? "en")": "\(sstatus)"],
-                 "ios_sound" : "successcaf.caf"])
+                 "subtitle" : ["\(langStr ?? "en")": "\(sstatus)"]
+                ])
         }
         else{
             print("OLUMSUZ BİLDİRİMİ BURDAN ATIYOOORRRRR")
@@ -44,14 +45,12 @@ class MyService: NSObject {
                 "contents": ["\(langStr ?? "en")": "\(localTeam) \(localScore)-\(visitorScore) \(visitorTeam)  \(minute) // \(sstatus)"],
                 "include_player_ids": ["\(oneSignalId)"],
                  "content_available": true,
+                 "ios_sound" : "failedcaf.caf",
                 "ios_badgeType" : "Increase", "ios_badgeCount" : "1",
-                "subtitle" : ["\(langStr ?? "en")" : "\(sstatus)"],
-                "ios_sound" : "failedcaf.caf"])
+                "subtitle" : ["\(langStr ?? "en")" : "\(sstatus)"]
+                ])
             
         }
-      
-        
-        
         StartTimer()
         
     }
