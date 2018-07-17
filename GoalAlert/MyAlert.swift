@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import OneSignal
 
 class MyAlert : UIViewController , UITableViewDelegate , UITableViewDataSource  {
   
@@ -45,7 +46,7 @@ class MyAlert : UIViewController , UITableViewDelegate , UITableViewDataSource  
         myalertTableView.delegate = self
         myalertTableView.dataSource = self
         myalertTableView.backgroundView = UIImageView(image: UIImage(named: "bg.jpg"))
-        showAlarmData()
+        showAlarmData(status: "pending")
            self.myalertTableView.reloadData()
         
          self.myalertTableView.addSubview(self.refreshControl)
@@ -55,7 +56,7 @@ class MyAlert : UIViewController , UITableViewDelegate , UITableViewDataSource  
         let cell : MyAlertCell = self.myalertTableView.dequeueReusableCell(withIdentifier: "alertcell") as! MyAlertCell
         let goCell  =  alert_result[indexPath.row]
         cell.setArray(mdataset: goCell)
-        cell.out_deleteButton.tag = indexPath.row
+        cell.out_deleteButton.tag = alert_result[indexPath.row].dbId
         cell.out_deleteButton.addTarget(self, action: #selector(deleteClicked(sender:)), for: .touchUpInside )
           self.refreshControl.endRefreshing()
         return cell
@@ -73,7 +74,60 @@ class MyAlert : UIViewController , UITableViewDelegate , UITableViewDataSource  
     }
     
     func deleteClicked( sender:UIButton! ){
-        aq = alert_DBHelper.deleteData(dbid: alert_result[sender.tag].dbId)
+        
+        let url = URL(string: "http://opucukgonder.com/tipster/index.php/Service/deleteAlarms")!
+        let config = URLSessionConfiguration.default
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId!
+        //let userid = "e15d101c-aa1f-421a-83cb-d6230579624c"
+        
+        var langDef : String = "en";
+        let lang = Locale.current.languageCode
+        if (lang == "de" || lang=="es" || lang=="fr" || lang=="pt" || lang=="ru" || lang=="tr"){
+            langDef = lang!
+        }
+        
+        let postString = "deviceid=\(userid)&id=\(sender.tag)"
+        let session: URLSession = URLSession(configuration: config, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue())
+        request.httpBody = postString.data(using: .utf8)
+        let task = session.dataTask(with: request ){ data, response, error in
+            
+            if error != nil{
+                print("Get Request Error")
+            }
+            else{
+                
+                if data != nil {
+                    
+                    do {
+                        let JsonResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+                        DispatchQueue.main.async {
+                     
+                            self.showAlarmData(status: "pending")
+                            self.myalertTableView.reloadData()
+                            
+                        }
+                       
+                        
+                    } // do bitişi
+                    catch {
+                        print(error)
+                        print("CATCH OLDU")
+                    }
+                }
+                
+            }
+            
+        }
+        task.resume()
+        
+        
+        
+        
+        
+        /*aq = alert_DBHelper.deleteData(dbid: alert_result[sender.tag].dbId)
         if(aq){
             var myMatchList = [Int]()
             let def = UserDefaults.standard
@@ -86,80 +140,124 @@ class MyAlert : UIViewController , UITableViewDelegate , UITableViewDataSource  
                 
             }
         }
+ */
       
-         showAlarmData()
-         self.myalertTableView.reloadData()
+        
+        
         
        
         
     }
     func handleRefresh(_ refreshControl: UIRefreshControl) {
-       showAlarmData()
+        showAlarmData(status: "pending")
         self.myalertTableView.reloadData()
+        
     }
     
-    func showAlarmData(){
+    func showAlarmData(status : String){
+        var visTeam : String = ""
+        var locTeam : String = ""
+        var id : Int  = 0
         var alarms = [AlertsPojo]()
-        let dbHelper = DBHelper.shared
-        if( dbHelper.getAllData().count != 0 ){
-            var array_list: [Alert] = dbHelper.getAllData()
-            for i in 0 ..< array_list.count {
-                let dbId = array_list[i].id
-                var matchId = array_list[i].matchId
-                var aa : String = ""
-                var maintext = ""
-                var alarmText = ""
-                
-                if(array_list[i].alarmMin == -2){
-                    alarmText = NSLocalizedString("any_time", comment: "")
-                }else if(array_list[i].alarmMin == -3){
-                    alarmText = NSLocalizedString("half_time", comment: "")
-                }else if(array_list[i].alarmMin == -4){
-                    alarmText = NSLocalizedString("full_time", comment: "")
-                }
-                else {
-                    alarmText = "\(array_list[i].alarmMin)"
-                }
+        let url = URL(string: "http://opucukgonder.com/tipster/index.php/Service/getAlarms")!
+        let config = URLSessionConfiguration.default
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId!
+        //let userid = "e15d101c-aa1f-421a-83cb-d6230579624c"
         
-                switch(array_list[i].bet){
-                
-                case 1.1:
-                    aa =  NSLocalizedString("both_teams_scored", comment: "")
-                 
-                   maintext = " \(array_list[i].localTeam)- \(array_list[i].visitorTeam) :  \(alarmText) ' / \(aa)"
-                    break
-                case -1.1:
-                    aa = NSLocalizedString("one_team_didnt_score", comment: "")
-                      maintext = " \(array_list[i].localTeam)- \(array_list[i].visitorTeam) :  \(alarmText) ' / \(aa)"
-                    break
-                case -8.8:
-                    aa = NSLocalizedString("score_info", comment: "")
-                      maintext = " \(array_list[i].localTeam)- \(array_list[i].visitorTeam) :  \(alarmText) ' / \(aa)"
-                   
-                    break
-                case -9.9:
-                    aa =  NSLocalizedString("no_goal", comment: "")
-                      maintext = " \(array_list[i].localTeam)- \(array_list[i].visitorTeam) :  \(alarmText) ' / \(aa)"
-                    break
-                    
-                default:
-                     maintext = " \(array_list[i].localTeam)- \(array_list[i].visitorTeam) :  \(alarmText) ' /   \(array_list[i].bet)"
-                    break
-                }
-              /*  if(array_list[i].alarmMin == -2){
-                    let generic = NSLocalizedString("generic_alarm", comment: "")
-                    maintext = " \(array_list[i].localTeam)- \(array_list[i].visitorTeam) : \(generic) ' / \(aa)"
-                }
-            */
-                
+        var langDef : String = "en";
+        let lang = Locale.current.languageCode
+        if (lang == "de" || lang=="es" || lang=="fr" || lang=="pt" || lang=="ru" || lang=="tr"){
+            langDef = lang!
+        }
+        
+        let postString = "deviceid=\(userid)&status=\(status)"
+        let session: URLSession = URLSession(configuration: config, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue())
+        request.httpBody = postString.data(using: .utf8)
+        let task = session.dataTask(with: request ){ data, response, error in
             
-                let alertpojo = AlertsPojo.init(dbId: dbId!, mainText: maintext, matchId: matchId)
-                alarms.append(alertpojo)
+            if error != nil{
+                print("Get Request Error")
+            }
+            else{
+                
+                if data != nil {
+                    
+                    do {
+                        let JsonResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [AnyObject]
+                        DispatchQueue.main.async {
+                            for i in 0 ..< JsonResult.count{
+                                var response  = JsonResult[i] as! [String:AnyObject]
+                                if let lt : String = response["localteam"] as? String{
+                                    locTeam = lt
+                                }
+                                if let vt : String = response["visitorteam"] as? String{
+                                    visTeam = vt
+                                }
+                                if let dbid : String = response["id"] as? String{
+                                    id = Int(dbid)!
+                                }
+                            
+                                var bet: String = (response["bet"] as? String)!
+                                var betMinute: String = (response["bet_minute"] as? String)!
+                                switch(response["bet_minute"] as! String){
+                                case "-2" :
+                                     betMinute = NSLocalizedString("any_time", comment: "")
+                                    break
+                                case "-3":
+                                    betMinute = NSLocalizedString("half_time", comment: "")
+                                    break
+                                case "-4":
+                                    betMinute = NSLocalizedString("full_time", comment: "")
+                                    break
+                                    
+                                default:
+                                    betMinute = NSLocalizedString("\(String(describing: response["bet_minute"] as! String))", comment: "") + "'"
+                                }
+                                
+                                switch(response["bet"] as! String){
+                                case "-8.8" :
+                                    bet = NSLocalizedString("score", comment: "")
+                                    break
+                                case "-9.9":
+                                    bet = NSLocalizedString("no_goal", comment: "")
+                                    break
+                                case "-1.1":
+                                    bet = NSLocalizedString("btts_no", comment: "")
+                                    break
+                                case "1.1":
+                                    bet = NSLocalizedString("btts_yes", comment: "")
+                                    break
+                                    
+                                default:
+                                    bet = NSLocalizedString("\(String(describing: response["bet"] as! String))", comment: "") + "'"
+                                }
+                                let alertpojo = AlertsPojo.init(dbId: id, mainText: locTeam + " - " + visTeam + "   " + betMinute  + "    " + bet)
+                                alarms.append(alertpojo)
+                            }
+                           
+                        
+                        }
+                        DispatchQueue.main.async {
+                            self.alert_result = alarms
+                            self.myalertTableView.reloadData()
+                        }
+                        
+                    } // do bitişi
+                    catch {
+                        print(error)
+                        print("CATCH OLDU")
+                    }
+                }
                 
             }
-          
+            
         }
-        self.alert_result = alarms
+        self.refreshControl.endRefreshing()
+        task.resume()
+      
         
         
         

@@ -97,7 +97,7 @@ class MyService: NSObject {
      }
     }
      stopTimer()
-     MyAlert().showAlarmData()
+    MyAlert().showAlarmData(status: "pending")
      }
     
     //operation

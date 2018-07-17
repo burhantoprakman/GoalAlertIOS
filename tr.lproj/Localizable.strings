@@ -13,7 +13,7 @@
 "win_to_nil" = "0'A KARŞI";
 "home_win" = "EV ÖNDE";
 "away_win" = "DEP ÖNDE";
-"set_generic" = "ÇOKLU ALARM KUR(Bakımda)";
+"set_generic" = "ÇOKLU ALARM KUR";
 "search" = "Arama";
 "back" = "Geri";
 "one_or_two_goal" = "1-2 GOL";

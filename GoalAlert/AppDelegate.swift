@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //ONE SIGNAL
        
         OneSignal.initWithLaunchOptions(launchOptions,
-                                        appId: "f5854e88-0b58-495f-8d3f-e7899202d43d",
+                                        appId: "011612ff-da89-490f-9133-1d53b5ba967a",
                                         handleNotificationAction: nil,
                                         settings: onesignalInitSettings)
         
@@ -68,11 +68,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     
-            self.mS.StartTimer()
-        if let vc = window?.rootViewController as? LiveScores{
-            vc.getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLive"))
-            completionHandler(.newData)
-        }
+//            self.mS.StartTimer()
+//        if let vc = window?.rootViewController as? LiveScores{
+//            vc.getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLive"))
+//            completionHandler(.newData)
+//        }
         
 
     }
@@ -85,20 +85,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
  
     func applicationDidEnterBackground(_ application: UIApplication) {
-        if let vc = window?.rootViewController as? LiveScores{
-            vc.getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLive"))
-        }
-        mS.StartTimer()
+//        if let vc = window?.rootViewController as? LiveScores{
+//            vc.getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLive"))
+//        }
+//        mS.StartTimer()
         
     }
  
     func applicationWillEnterForeground(_ application: UIApplication) {
-        if let vc = window?.rootViewController as? LiveScores{
-            vc.getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLive"))
-        }
-        mS.StartTimer()
-    }
+//        if let vc = window?.rootViewController as? LiveScores{
+//            vc.getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLive"))
+//        }
+//        mS.StartTimer()
+//    }
 
 
 }
 
+}

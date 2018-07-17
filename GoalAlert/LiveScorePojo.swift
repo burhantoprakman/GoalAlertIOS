@@ -41,6 +41,8 @@ class LiveScorePojo{
         self.visitorScore = visitorScore
         self.isMatchLength = isMatchLength
     }
+   init(){
+    }
     init(leagueId : Int , leagueName : String , flagg : String) {
         
         self.leagueId = leagueId

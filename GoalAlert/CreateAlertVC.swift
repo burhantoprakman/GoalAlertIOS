@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import Toaster
 import UserNotifications
+import OneSignal
+import Alamofire
 
 class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource  {
    
@@ -49,9 +51,11 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     var Minute : Int = 0
     var LocalTeamScore : Int = 0
     var visitorTeamScore : Int = 0
-    var bet : Double  = 0.0
+    var bet : String  = ""
     var spnPos : Int = -1
     var genericArray = [LiveScorePojo]()
+    var lspArray = [LiveScorePojo]()
+    var multipleArray :  [Parameters] = []
     var isGeneric : Bool  = false
     var count = 0;
     
@@ -168,83 +172,83 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
   
 
     @IBAction func NOOOO(_ sender: Any) {
-        bet = -1.1
+        bet = "-1.1"
         alertBet.text = NSLocalizedString("btts_no", comment: "")
     }
     
     @IBAction func btts_YesClicked(_ sender: Any) {
-        bet = 1.1
+        bet = "1.1"
         alertBet.text = NSLocalizedString("btts_yes", comment: "")
     }
     
     @IBAction func scoreClicked(_ sender: Any) {
-        bet = -8.8
+        bet = "-8.8"
         alertBet.text = NSLocalizedString("score", comment: "")
     }
     @IBAction func noGoalClicked(_ sender: Any) {
-        bet = -9.9
+        bet = "-9.9"
         alertBet.text = NSLocalizedString("no_goal", comment: "")
     }
     
     
     
     @IBAction func arti05Clicked(_ sender: Any) {
-        bet = 0.5
+        bet = "0.5"
         alertBet.text = "0.5+"
     }
     @IBAction func arti15Clicked(_ sender: Any) {
-        bet = 1.5
+        bet = "1.5"
         alertBet.text = "1.5+"
     }
     
     @IBAction func arti25Clicked(_ sender: Any) {
-        bet = 2.5
+        bet = "2.5"
         alertBet.text = "2.5+"
     }
     
    
     @IBAction func arti35Clicked(_ sender: Any) {
-        bet = 3.5
+        bet = "3.5"
         alertBet.text = "3.5+"
     }
   
     @IBAction func arti45Clicked(_ sender: Any) {
-        bet = 4.5
+        bet = "4.5"
         alertBet.text = "4.5+"
     }
     @IBAction func arti55Clicked(_ sender: Any) {
-        bet = 5.5
+        bet = "5.5"
         alertBet.text = "5.5+"
     }
     
     
     @IBAction func eksi15Clicked(_ sender: Any) {
-        bet = -1.5
+        bet = "-1.5"
         alertBet.text = "1.5-"
     }
     
     @IBAction func eksi25Clicked(_ sender: Any) {
-        bet = -2.5
+        bet = "-2.5"
         alertBet.text = "2.5-"
     }
     
     @IBAction func eksi35Clicked(_ sender: Any) {
-        bet = -3.5
+        bet = "-3.5"
         alertBet.text = "3.5-"
     }
     
     @IBAction func eksi45Clicked(_ sender: Any) {
-        bet = -4.5
+        bet = "-4.5"
         alertBet.text = "4.5-"
     }
     
     @IBAction func eksi55Clicked(_ sender: Any) {
-        bet = -5.5
+        bet = "-5.5"
         alertBet.text = "5.5-"
     }
    
     @IBAction func setAlert_Clicked(_ sender: Any) {
-        if (bet == 0.0 ){
+        if (bet == "0.0" ){
             let toast = Toast.init(text: NSLocalizedString("choose_bet", comment: "")  , delay: Delay.short, duration: Delay.long)
             toast.show()
         }
@@ -253,70 +257,276 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             toast.show()
          
         } else if (isGeneric == true) {
-          
-            for i in 0 ..< genericArray.count {
-             
-                if ( genericArray[i].matchId != -1) {
-                        // dk bazlı
-                        if (spnPos > 0) {
-                            if(spnPos > genericArray[i].minute) {
-                            insert(local: genericArray[i].localTeam, visitor: genericArray[i].visitorTeam, spnPos: spnPos, bet: bet, matchId: genericArray[i].matchId)
-                                count+=1
+           
+                if (genericArray != nil) {
+                    var count : Int = 0
+                        var lsp = LiveScorePojo.init()
+                    for i in 0 ..< genericArray.count {
+                        lsp=genericArray[i]
+                        if (genericArray[i].matchId != -1) {
+                            if (spnPos > 0) {
+                                // dk bazlı
+                                var min : Int = lsp.minute
+                                if (min == 0){
+                                 min = 45;
+                                }
+                                if (spnPos > min) {
+                                    if (Double(bet) == 1.1) {
+                                        if (lsp.localScore == 0 || lsp.visitorScore == 0) {
+                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                            lspArray.append(lsp)
+                                            count = count+1
+                                        }
+                                    } else if (Double(bet) == -1.1) {
+                                        if (lsp.localScore == 0 || lsp.visitorScore == 0) {
+                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                            lspArray.append(lsp)
+                                            count = count+1
+                                        }
+                                    } else if (Double(bet) == -8.8) {
+                                        //skor alarmı - genericte buraya hiç girmeyecek silinebilir
+                                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                        lspArray.append(lsp)
+                                        count = count+1
+                                    } else if (Double(bet) == -9.9) {
+                                        if (lsp.localScore == 0 && lsp.visitorScore == 0) {
+                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                            lspArray.append(lsp)
+                                            count = count+1
+                                        }
+                                    } else if (Double(lsp.localScore + lsp.visitorScore) < Swift.abs(Double(bet)!)) {
+                                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                        lspArray.append(lsp)
+                                        count = count+1
+                                    }
+                                }
+                            } else if (spnPos == -2) {
+                                // any time
+                                if (Double(bet) == 1.1) {
+                                    if (lsp.localScore == 0 || lsp.visitorScore == 0) {
+                                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                        lspArray.append(lsp)
+                                        count = count+1
+                                    }
+                                } else if (Double(bet) == -1.1) {
+                                    if (lsp.localScore == 0 || lsp.visitorScore == 0) {
+                                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                        lspArray.append(lsp)
+                                        count = count+1
+                                    }
+                                } else if (Double(bet) == -9.9) {
+                                    if (lsp.localScore == 0 && lsp.visitorScore == 0){
+                                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                        self.lspArray.append(lsp)
+                                        count = count+1
+                                    }
+                                } else {
+                                    if (Swift.abs(Double(bet)!) > Double(lsp.localScore + lsp.visitorScore)) {
+                                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                        lspArray.append(lsp)
+                                        count = count+1
+                                    }
+                                }
+                            } else if (spnPos == -3) {
+                                // half time
+                                if (lsp.minute < 45 && lsp.minute != 0) {
+                                    if (Double(bet) == 1.1) {
+                                        if (lsp.localScore == 0 || lsp.visitorScore == 0) {
+                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                            lspArray.append(lsp)
+                                            count = count+1
+                                        }
+                                    } else if (Double(bet) == -1.1) {
+                                        if (lsp.localScore == 0 || lsp.visitorScore == 0) {
+                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                            lspArray.append(lsp)
+                                            count = count+1
+                                        }
+                                    } else if (Double(bet) == -9.9) {
+                                        if (lsp.localScore == 0 && lsp.visitorScore == 0) {
+                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                            lspArray.append(lsp)
+                                            count = count+1
+                                        }
+                                    } else {
+                                        if (Swift.abs(Double(bet)!) > Double(lsp.localScore + lsp.visitorScore)) {
+                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                            lspArray.append(lsp)
+                                            count = count+1
+                                        }
+                                    }
+                                }
+                            } else if (spnPos == -4) {
+                                // full time - genericte buraya hiç girmeyecek silinebilir
+                                //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                lspArray.append(lsp)
+                                count = count+1
                             }
                         }
-                            
-                     else if (spnPos == -2) {
-                        // any time
-                        if (bet == 1.1) {
-                            if (genericArray[i].localScore == 0 || genericArray[i].visitorScore == 0) {
-                                insert(local: genericArray[i].localTeam, visitor: genericArray[i].visitorTeam, spnPos: spnPos, bet: bet, matchId: genericArray[i].matchId)
-                                count+=1
-                            }
-                        } else {
-                            if (bet > Double(genericArray[i].localScore + genericArray[i].visitorScore)) {
-                                insert(local: genericArray[i].localTeam, visitor: genericArray[i].visitorTeam, spnPos: spnPos, bet: bet, matchId: genericArray[i].matchId)
-                                count+=1
-                            }
-                        }
-                    } else if (spnPos == -3) {
-                        // half time
-                        if (genericArray[i].minute < 45) {
-                            insert(local: genericArray[i].localTeam, visitor: genericArray[i].visitorTeam, spnPos: spnPos, bet: bet, matchId: genericArray[i].matchId)
-                            count+=1
-                        }
-                    } else if (spnPos == -4) {
-                        // full time
-                            insert(local: genericArray[i].localTeam, visitor: genericArray[i].visitorTeam, spnPos: spnPos, bet: bet, matchId: genericArray[i].matchId)
-                            count+=1
                     }
-                }
+                    if (count == 0) {
+                        Toast.init(text: "No available matches", delay: 3, duration: 3).show()
+                    }
+        
+            let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId!
+            //let userid = "e15d101c-aa1f-421a-83cb-d6230579624c"
+            var langDef : String = "en";
+            let lang = Locale.current.languageCode
+            if (lang == "de" || lang=="es" || lang=="fr" || lang=="pt" || lang=="ru" || lang=="tr"){
+                langDef = lang!
             }
-            let toast : Toast! = Toast(text: "\(count) Alarm Settled", delay: Delay.short, duration: Delay.long)
-            toast.show()
+                    
+            for i in 0 ..< lspArray.count {
+                let aaaa  = [ "localteam" :lspArray[i].localTeam ,
+                              "visitorteam" : lspArray[i].visitorTeam ,
+                              "bet_minute" : spnPos,
+                              "bet" : bet,
+                              "lang" :  langDef,
+                              "deviceid" : userid,
+                              "match_id" : lspArray[i].matchId
+                    ] as [String : Any]
+           
+                
+                /*let multipleArrayPojo = multipleLspArray.init(localTeam: "\(lspArray[i].localTeam!)", visitorTeam: "\(lspArray[i].visitorTeam!)", bet_minute: "\(spnPos)", lang: "\(langDef)", bet: "\(bet)", match_id: "\(lspArray[i].matchId!)", deviceid: "\(userid)")*/
+                multipleArray.append(aaaa)
+            }
+             
+                    let url = URL(string: "http://opucukgonder.com/tipster/index.php/Service/groupAlertForios")!
+                    let headers    = [ "Content-Type" : "application/json"]
+                    let para : Parameters = [ "multipleLspArray" : multipleArray as AnyObject]
+                    Alamofire.request(url, method: .post, parameters: para, encoding: JSONEncoding.default, headers : headers)
+                        .responseString { response in
+
+                            print(response)
+                            print(response.result)
+
+                    }
+                
+//                    let url = URL(string: "http://opucukgonder.com/tipster/index.php/Service/groupAlertForios")!
+//                     let config = URLSessionConfiguration.default
+//                     var request = URLRequest(url: url)
+//                     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//                     request.httpMethod = "POST"
+//
+//                     let postString = "multipleLspArray=\(multipleArray)"
+//                     let session: URLSession = URLSession(configuration: config, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue())
+//                     request.httpBody = postString.data(using: .utf8)
+//                     let task = session.dataTask(with: request ){ data, response, error in
+//
+//                     if error != nil{
+//                     print("Get Request Error")
+//                     }
+//                     else{
+//
+//                     if data != nil {
+//
+//                     do {
+//                     let JsonResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+//                     DispatchQueue.main.async {
+//                     let ressult : Bool  = (JsonResult["result"] != nil)
+//                     print(ressult)
+//                     let toast : Toast! = Toast(text: "\(count) Alarm Settled", delay: Delay.short, duration: Delay.long)
+//                     toast.show()
+//                     }
+//
+//                     } // do bitişi
+//                     catch {
+//                     print(error)
+//                     print("CATCH OLDU")
+//                     }
+//                     }
+//
+//                     }
+//
+//                     }
+//                     task.resume()
+                    
+                    //insert(local: localTeam, visitor: visitorTeam, spnPos: spnPos, bet: Double(bet)!, matchId: matchId)
+                    
+            
+        }
         }
      else {
-        var myMatchList = [Int]()
-            _  = DBHelper.shared.saveData(localteam: localTeam, visitorteam: visitorTeam, alarmmin: spnPos, bet: bet, matchid: matchId)
-        let def = UserDefaults.standard
-        if let temp = def.array(forKey: "myMatchList") as? [Int]  {
-            myMatchList = temp
-        }
-        myMatchList.append(matchId)
-        def.set(myMatchList, forKey: "myMatchList")
-        def.synchronize()
+            //             let url = URL(string: "http://opucukgonder.com/tipster/index.php/Service/setAlert")!
+            //            let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId!
+            //            //let userid = "e15d101c-aa1f-421a-83cb-d6230579624c"
+            //
+            //            var langDef : String = "en";
+            //            let lang = Locale.current.languageCode
+            //            if (lang == "de" || lang=="es" || lang=="fr" || lang=="pt" || lang=="ru" || lang=="tr"){
+            //                langDef = lang!
+            //            }
+            //
+            //
+            //            let headers    = [ "Content-Type" : "application/json"]
+            //            let para : Parameters = [ "device_id" : userid, "match_id" : matchId , "localteam" : localTeam , "visitorteam" : visitorTeam, "bet" : bet, "bet_minute" : spnPos, "lang" : langDef ]
+            //            Alamofire.request(url, method: .post, parameters: para, encoding: JSONEncoding.default, headers : headers)
+            //                .responseString { response in
+            //
+            //                    print(response)
+            //                    print(response.result)
+            //
+            //            }
             
-        let myService = MyService()
-       
-           myService.StartTimer()
+
+           
+             let url = URL(string: "http://opucukgonder.com/tipster/index.php/Service/setAlert")!
+             let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId!
+             //let userid = "e15d101c-aa1f-421a-83cb-d6230579624c"
+             
+             var langDef : String = "en";
+             let lang = Locale.current.languageCode
+             if (lang == "de" || lang=="es" || lang=="fr" || lang=="pt" || lang=="ru" || lang=="tr"){
+             langDef = lang!
+             }
+             let postString = "device_id=\(userid)&match_id=\(matchId)&localteam=\(localTeam)&visitorteam=\(visitorTeam)&bet=\(bet)&bet_minute=\(spnPos)&lang=\(langDef)"
+             
+             
+            let config = URLSessionConfiguration.default
+            var request = URLRequest(url: url)
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+             
+           
+            let session: URLSession = URLSession(configuration: config, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue())
+            request.httpBody = postString.data(using: .utf8)
+            let task = session.dataTask(with: request ){ data, response, error in
+                
+                if error != nil{
+                    print("Get Request Error TEKLIIII")
+                }
+                else{
+                    
+                    if data != nil {
+                        
+                        do {
+                            let JsonResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+                            DispatchQueue.main.async {
+                                let ressult : Bool  = (JsonResult["result"] != nil)
+                                print("\(ressult) TEKLI ")
+                            }
+                            
+                        } // do bitişi
+                        catch {
+                            print("\(error) TEKLI ERROR")
+                            print("CATCH OLDU")
+                        }
+                    }
+                    
+                }
+                
             }
-      
+            task.resume()
+            
+            //insert(local: localTeam, visitor: visitorTeam, spnPos: spnPos, bet: Double(bet)!,matchId: matchId)
         
+        }
     }
         
         func insert(local : String, visitor : String, spnPos : Int, bet : Double , matchId : Int) {
             
             var myMatchList = [Int]()
-            _  = DBHelper.shared.saveData(localteam: local, visitorteam: visitor, alarmmin: spnPos, bet: bet, matchid: matchId)
+            _  = DBHelper.shared.saveData(localteam: local, visitorteam: visitor, alarmmin: spnPos, bet: Double(bet), matchid: matchId)
             let def = UserDefaults.standard
             if let temp = def.array(forKey: "myMatchList") as? [Int]  {
                 myMatchList = temp
@@ -324,18 +534,9 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             myMatchList.append(matchId)
             def.set(myMatchList, forKey: "myMatchList")
             def.synchronize()
-            
-            
-            let myService = MyService()
-            
-            myService.StartTimer()
+      
   
         }
-    
-
-   
-   
-    
     func backgroundTransparent(){
         
         btts_yes.backgroundColor = .clear

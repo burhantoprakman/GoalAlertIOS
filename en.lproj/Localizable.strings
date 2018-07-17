@@ -13,7 +13,7 @@
 "win_to_nil" = "WIN TO NIL";
 "home_win" = "HOME WIN";
 "away_win" = "AWAY WIN";
-"set_generic" = "SET MULTIPLE ALERTS(Repair)";
+"set_generic" = "SET MULTIPLE ALERTS";
 "search" = "Search";
 "not_alarm_selected" = "You can set a new alarm on Live Page";
 "your_alert" = "Your Alert : ";

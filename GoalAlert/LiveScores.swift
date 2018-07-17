@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import GoogleMobileAds
 import Toaster
-
+import OneSignal
 
 
 class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource , UISearchBarDelegate , GADInterstitialDelegate
@@ -57,6 +57,7 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
     var isMatchLength : Bool = false
     var matchLength : Int = 0
     var result = [LiveScorePojo]()
+    var resultSariCanlar = [LiveScorePojo]()
     var filtered = [LiveScorePojo]()
     var isSearching : Bool = false
     var interstitial: GADInterstitial!
@@ -231,7 +232,7 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
         
         //Date Func
         date()
-        getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLive"))
+        getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLiveNew"))
       
         
     }
@@ -242,20 +243,17 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
         if(result.count != 0 || filtered.count != 0 ){
             
             var bellColor : Bool = false
-            let def = UserDefaults.standard
-            var mML = [Int]()
-            if let temp = def.array(forKey: "myMatchList") as? [Int]{
-                mML = temp
-                
-                for k in 0 ..< mML.count {
-                    if( mML[k] == result[indexPath.row].matchId){
-                       bellColor = true
+            for i in 0 ..< resultSariCanlar.count{
+        
+                    if(resultSariCanlar[i].matchId == result[indexPath.row].matchId){
+                        bellColor = true
                     }
-                    
-                    
-                }
-                
+                    else{
+                        bellColor = false
+                    }
+
             }
+            
             
             if(isSearching == true){
                 let aaa  =  filtered[indexPath.row]
@@ -326,16 +324,26 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
     }
     
     func handleRefresh(_ refreshControl: UIRefreshControl) {
-      getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLive"))
+      getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLiveNew"))
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLiveNew"))
     }
 
    
     func getLiveMatches(url : URL!){
-        
-        print("GET LIVE MATCHES")
        
         var liveArray  = [LiveScorePojo]()
-        let session = URLSession.shared
+        let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId!
+        let config = URLSessionConfiguration.default
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "deviceid=\(userid)"
+        let session: URLSession = URLSession(configuration: config, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue())
+        request.httpBody = postString.data(using: .utf8)
+        
+        
         let task = session.dataTask(with: url!) { (data, response, error) in
             
             if error != nil{
@@ -348,12 +356,18 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
                 do {
                     
                    
-                    let JsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! Array<Dictionary<String,Any>>
+                    let JsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
                    
-                    
+            
                     DispatchQueue.main.async {
-                        let totalarray : [Any]!  = JsonResult
-                   
+                        let totalarray = JsonResult["lives"] as! NSArray
+                        let sariCanlarArray = JsonResult["sariCanlar"] as! NSArray
+                        /*for k in 0 ..< sariCanlarArray.count{
+                            let aa = sariCanlarArray[k] as! [String:Any]
+                            let saricanlarPojo = LiveScorePojo.init(leagueId: 0, matchId: aa["match_id"] as! Int, localScore: 0, visitorScore: 0, minute: 0, preLocalScore: 0, preVisitorScore: 0, preMinute: 0, leagueName: "", localTeam: "", visitorTeam: "", flagg: "", ilkflag: false, isMatchLength: false)
+                             self.resultSariCanlar.append(saricanlarPojo)
+                        }*/
+                       
                         if(self.matchLength != 0){
                             if(self.matchLength == totalarray.count){
                                 self.isMatchLength = true
@@ -365,7 +379,7 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
                         self.matchLength = totalarray.count
                       
                         for i in 0 ..< totalarray.count  {
-                            let matches = totalarray[i] as! [String : AnyObject]
+                            let matches = totalarray[i] as! [String:Any]
                             let leaguename : String = String(describing: matches["league_name"]!)
                             let leagueId = matches["league_id"]! as! Int
                             let flags : String = String(describing: matches["flags"]!)
@@ -661,6 +675,7 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
                         }
                         
                         
+                        
                     }
                     DispatchQueue.main.async {
                 
@@ -676,7 +691,7 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
                          self.liveScoreTableView.reloadData()
                             }
                         self.refreshControl.endRefreshing()
-                        self.getLiveMatches(url:  URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLive"))
+                        self.getLiveMatches(url:  URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLiveNew"))
                     }
                
                    

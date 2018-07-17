@@ -560,7 +560,7 @@
                                     <constraint firstItem="hBd-wk-3SE" firstAttribute="top" secondItem="IdY-gq-j4h" secondAttribute="top" id="v5y-r7-RB5"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6z0-uZ-k9o">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6z0-uZ-k9o">
                                 <rect key="frame" x="10" y="159" width="300" height="29"/>
                                 <color key="backgroundColor" red="0.105883492" green="0.22547027059999999" blue="0.44202093910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -1746,6 +1746,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="LzI-Zg-hZw"/>
-        <segue reference="9gZ-1d-7hB"/>
+        <segue reference="Fae-ct-ybM"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -302,6 +302,7 @@
 		63776F22203C5E860094AAAC /* nav.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63776F21203C5E860094AAAC /* nav.jpg */; };
 		637F240F20039B8500F57CF9 /* MyAlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F240E20039B8500F57CF9 /* MyAlertCell.swift */; };
 		637F24112003A29500F57CF9 /* AlertsPojo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F24102003A29500F57CF9 /* AlertsPojo.swift */; };
+		638640DD20EE930000E86C2D /* multipleLspArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638640DC20EE930000E86C2D /* multipleLspArray.swift */; };
 		63865169200BA6CB0049C651 /* betxscore.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 63865168200BA6CB0049C651 /* betxscore.jpeg */; };
 		6386516B200BA72C0049C651 /* goalalert.png in Resources */ = {isa = PBXBuildFile; fileRef = 6386516A200BA72C0049C651 /* goalalert.png */; };
 		6386516D200BA79D0049C651 /* stor.png in Resources */ = {isa = PBXBuildFile; fileRef = 6386516C200BA79D0049C651 /* stor.png */; };
@@ -646,6 +647,7 @@
 		63776F21203C5E860094AAAC /* nav.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nav.jpg; sourceTree = "<group>"; };
 		637F240E20039B8500F57CF9 /* MyAlertCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlertCell.swift; sourceTree = "<group>"; };
 		637F24102003A29500F57CF9 /* AlertsPojo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsPojo.swift; sourceTree = "<group>"; };
+		638640DC20EE930000E86C2D /* multipleLspArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = multipleLspArray.swift; sourceTree = "<group>"; };
 		63865168200BA6CB0049C651 /* betxscore.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = betxscore.jpeg; sourceTree = "<group>"; };
 		6386516A200BA72C0049C651 /* goalalert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goalalert.png; sourceTree = "<group>"; };
 		6386516C200BA79D0049C651 /* stor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stor.png; sourceTree = "<group>"; };
@@ -993,6 +995,7 @@
 				634FB8C31FE00B11007CFF07 /* ResultPojo.swift */,
 				636438731FE173A3009D70C4 /* NextMatchesPojo.swift */,
 				637F24102003A29500F57CF9 /* AlertsPojo.swift */,
+				638640DC20EE930000E86C2D /* multipleLspArray.swift */,
 			);
 			name = Pojo;
 			sourceTree = "<group>";
@@ -1088,9 +1091,9 @@
 		638AA9321FD567E000BB37DB /* GoalAlert */ = {
 			isa = PBXGroup;
 			children = (
+				6386517C200CBDC90049C651 /* GoalAlert.entitlements */,
 				6335DD1F206ED423001D8C0E /* Default-568h.png */,
 				6335DD15206BC117001D8C0E /* CreateAlertVC.swift */,
-				6386517C200CBDC90049C651 /* GoalAlert.entitlements */,
 				63865167200BA5C40049C651 /* images */,
 				637F243720076CBF00F57CF9 /* sounds */,
 				6300997C1FFBA9EA005BFE13 /* flag */,
@@ -1555,11 +1558,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GoalAlert/Pods-GoalAlert-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 			);
@@ -1671,6 +1676,7 @@
 				636438741FE173A3009D70C4 /* NextMatchesPojo.swift in Sources */,
 				637F240F20039B8500F57CF9 /* MyAlertCell.swift in Sources */,
 				6335DD16206BC117001D8C0E /* CreateAlertVC.swift in Sources */,
+				638640DD20EE930000E86C2D /* multipleLspArray.swift in Sources */,
 				638AA9361FD567E000BB37DB /* SplashScreen.swift in Sources */,
 				63526C8B1FD7F25700E25CB0 /* LiveScoreCell.swift in Sources */,
 				638AA93C1FD567E000BB37DB /* GoalAlert.xcdatamodeld in Sources */,
@@ -1797,6 +1803,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1849,6 +1856,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1881,7 +1889,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Y532NB7998;
 				INFOPLIST_FILE = GoalAlert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vavien.agency.GoalAlert;
@@ -1902,7 +1910,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Y532NB7998;
 				INFOPLIST_FILE = GoalAlert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vavien.agency.GoalAlert;

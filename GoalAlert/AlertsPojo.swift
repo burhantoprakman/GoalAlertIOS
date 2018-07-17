@@ -9,13 +9,11 @@
 import Foundation
 import UIKit
 public class AlertsPojo{
-    var dbId : Int64
+    var dbId : Int
     var mainText : String
-    var matchId : Int
-    init(dbId : Int64 , mainText : String , matchId : Int ) {
+    init(dbId : Int , mainText : String) {
         self.dbId = dbId
         self.mainText = mainText
-        self.matchId = matchId
     }
     
 }

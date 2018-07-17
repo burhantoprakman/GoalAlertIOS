@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 //
 //  DBHelper.swift
 //  GoalAlert

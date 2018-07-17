@@ -6,7 +6,7 @@
 	<string>development</string>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.vavienAgency.GoalAlert</string>
+		<string>$(AppIdentifierPrefix)vavien.agency.GoalAlert</string>
 	</array>
 </dict>
 </plist>
