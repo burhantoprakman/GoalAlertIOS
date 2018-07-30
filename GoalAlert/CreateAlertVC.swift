@@ -12,9 +12,10 @@ import Toaster
 import UserNotifications
 import OneSignal
 import Alamofire
+import SwiftyJSON
 
 class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource  {
-   
+    
     @IBOutlet weak var create_localTeam: UILabel!
     @IBOutlet weak var create_visitorTeam: UILabel!
     @IBOutlet weak var create_Minute: UILabel!
@@ -39,7 +40,7 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     @IBOutlet weak var eksi55: UIButton!
     @IBOutlet weak var set_Alert: UIButton!
     @IBOutlet weak var arti55: UIButton!
-   
+    
     @IBOutlet weak var alertPickerView: UIPickerView!
     
     @IBOutlet weak var bar: UINavigationBar!
@@ -58,7 +59,10 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     var multipleArray :  [Parameters] = []
     var isGeneric : Bool  = false
     var count = 0;
-    
+    var responseArray : [[String:AnyObject]] = []
+    var datas        = NSMutableArray()
+    var json : [String:AnyObject] = [:]
+    var params : Parameters = [:]
     
     var pickerDataSource = [NSLocalizedString("choose", comment: ""), NSLocalizedString("any_time", comment: ""), NSLocalizedString("half_time", comment: ""), NSLocalizedString("full_time", comment: ""), "5" ,"10" ,"15" ,"20" ,"25" ,"30" ,"35" ,"40" ,"45" ,"50" ,"55" ,"60" ,"65" ,"70" ,"75" ,"80" ,"85" ,"90" ];
     override func viewDidLoad() {
@@ -86,22 +90,22 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             create_visitorTeam.isHidden = true
             
         }else {
-        create_LocalTeamScore.text = "\(LocalTeamScore) -"
-         create_visitorTeamScore.text = "\(visitorTeamScore)"
-        if(Minute == 0){
-            create_Minute.text  = NSLocalizedString("ht", comment: "")
-        }else{
-            create_Minute.text = "\(String(Minute))'"
-        }
-         create_localTeam.text = String(localTeam)
-         create_visitorTeam.text = "-  \(visitorTeam)"
+            create_LocalTeamScore.text = "\(LocalTeamScore) -"
+            create_visitorTeamScore.text = "\(visitorTeamScore)"
+            if(Minute == 0){
+                create_Minute.text  = NSLocalizedString("ht", comment: "")
+            }else{
+                create_Minute.text = "\(String(Minute))'"
+            }
+            create_localTeam.text = String(localTeam)
+            create_visitorTeam.text = "-  \(visitorTeam)"
         }
         
         backgroundTransparent()
         
-  }
+    }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-          return 1
+        return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerDataSource.count;
@@ -122,23 +126,24 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         label.textAlignment = .center
         return label
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         backgroundTransparent()
         
-      if(row == 0){
-        backgroundTransparent()
-        yourAlert.text = NSLocalizedString("your_alert_choose", comment: "")
-        spnPos = -1
-      }else if(row == 1){
-        spnPos = -2
-        backgroundTransparent()
+        if(row == 0){
+            backgroundTransparent()
+            yourAlert.text = NSLocalizedString("your_alert_choose", comment: "")
+            spnPos = -1
+        }else if(row == 1){
+            spnPos = -2
+            backgroundTransparent()
             btts_yes.backgroundColor=UIColor.red
             arti05.backgroundColor=UIColor.black
             arti15.backgroundColor=UIColor.red
             arti25.backgroundColor=UIColor.black
             arti35.backgroundColor=UIColor.red
             arti45.backgroundColor=UIColor.black
+            arti55.backgroundColor = UIColor.red
             set_Alert.backgroundColor=UIColor.green
             btts_yes.isEnabled = true
             arti05.isEnabled = true
@@ -146,31 +151,32 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             arti25.isEnabled = true
             arti35.isEnabled = true
             arti45.isEnabled = true
+            arti55.isEnabled = true
             set_Alert.isEnabled = true
-        yourAlert.text = NSLocalizedString("your_alert_any_time", comment: "")
-        
-      }else if (row == 2 ){
-        yourAlert.text = NSLocalizedString("your_alert_half_time", comment: "")
-        spnPos = -3
-        changeColor()
-      
-        
-      }else if(row == 3){
-        yourAlert.text = NSLocalizedString("your_alert_full_time", comment: "")
-        spnPos = -4
-        changeColor()
+            yourAlert.text = NSLocalizedString("your_alert_any_time", comment: "")
+            
+        }else if (row == 2 ){
+            yourAlert.text = NSLocalizedString("your_alert_half_time", comment: "")
+            spnPos = -3
+            changeColor()
+            
+            
+        }else if(row == 3){
+            yourAlert.text = NSLocalizedString("your_alert_full_time", comment: "")
+            spnPos = -4
+            changeColor()
         }
-      else{
-        let aa :String = NSLocalizedString("your_alert", comment: "")
-        yourAlert.text = "\(aa) \(pickerDataSource[row])'"
-        spnPos = Int(pickerDataSource[row])!
-        changeColor()
+        else{
+            let aa :String = NSLocalizedString("your_alert", comment: "")
+            yourAlert.text = "\(aa) \(pickerDataSource[row])'"
+            spnPos = Int(pickerDataSource[row])!
+            changeColor()
         }
-    
+        
     }
     
-  
-
+    
+    
     @IBAction func NOOOO(_ sender: Any) {
         bet = "-1.1"
         alertBet.text = NSLocalizedString("btts_no", comment: "")
@@ -206,12 +212,12 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         alertBet.text = "2.5+"
     }
     
-   
+    
     @IBAction func arti35Clicked(_ sender: Any) {
         bet = "3.5"
         alertBet.text = "3.5+"
     }
-  
+    
     @IBAction func arti45Clicked(_ sender: Any) {
         bet = "4.5"
         alertBet.text = "4.5+"
@@ -246,7 +252,7 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         bet = "-5.5"
         alertBet.text = "5.5-"
     }
-   
+    
     @IBAction func setAlert_Clicked(_ sender: Any) {
         if (bet == "0.0" ){
             let toast = Toast.init(text: NSLocalizedString("choose_bet", comment: "")  , delay: Delay.short, duration: Delay.long)
@@ -255,119 +261,118 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         else if(spnPos == -1){
             let toast = Toast.init(text: NSLocalizedString("choose_minute", comment: "")  ,delay: Delay.short, duration: Delay.long)
             toast.show()
-         
+            
         } else if (isGeneric == true) {
-           
-                if (genericArray != nil) {
-                    var count : Int = 0
-                        var lsp = LiveScorePojo.init()
-                    for i in 0 ..< genericArray.count {
-                        lsp=genericArray[i]
-                        if (genericArray[i].matchId != -1) {
-                            if (spnPos > 0) {
-                                // dk bazlı
-                                var min : Int = lsp.minute
-                                if (min == 0){
-                                 min = 45;
+            
+            var count : Int = 0
+            var lsp = LiveScorePojo.init()
+            for i in 0 ..< genericArray.count {
+                lsp=genericArray[i]
+                if (genericArray[i].matchId != -1) {
+                    if (spnPos > 0) {
+                        // dk bazlı
+                        var min : Int = lsp.minute
+                        if (min == 0){
+                            min = 45;
+                        }
+                        if (spnPos > min) {
+                            if (Double(bet) == 1.1) {
+                                if (lsp.localScore == 0 || lsp.visitorScore == 0) {
+                                    //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                    lspArray.append(lsp)
+                                    count = count+1
                                 }
-                                if (spnPos > min) {
-                                    if (Double(bet) == 1.1) {
-                                        if (lsp.localScore == 0 || lsp.visitorScore == 0) {
-                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                            lspArray.append(lsp)
-                                            count = count+1
-                                        }
-                                    } else if (Double(bet) == -1.1) {
-                                        if (lsp.localScore == 0 || lsp.visitorScore == 0) {
-                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                            lspArray.append(lsp)
-                                            count = count+1
-                                        }
-                                    } else if (Double(bet) == -8.8) {
-                                        //skor alarmı - genericte buraya hiç girmeyecek silinebilir
-                                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                        lspArray.append(lsp)
-                                        count = count+1
-                                    } else if (Double(bet) == -9.9) {
-                                        if (lsp.localScore == 0 && lsp.visitorScore == 0) {
-                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                            lspArray.append(lsp)
-                                            count = count+1
-                                        }
-                                    } else if (Double(lsp.localScore + lsp.visitorScore) < Swift.abs(Double(bet)!)) {
-                                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                        lspArray.append(lsp)
-                                        count = count+1
-                                    }
+                            } else if (Double(bet) == -1.1) {
+                                if (lsp.localScore == 0 || lsp.visitorScore == 0) {
+                                    //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                    lspArray.append(lsp)
+                                    count = count+1
                                 }
-                            } else if (spnPos == -2) {
-                                // any time
-                                if (Double(bet) == 1.1) {
-                                    if (lsp.localScore == 0 || lsp.visitorScore == 0) {
-                                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                        lspArray.append(lsp)
-                                        count = count+1
-                                    }
-                                } else if (Double(bet) == -1.1) {
-                                    if (lsp.localScore == 0 || lsp.visitorScore == 0) {
-                                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                        lspArray.append(lsp)
-                                        count = count+1
-                                    }
-                                } else if (Double(bet) == -9.9) {
-                                    if (lsp.localScore == 0 && lsp.visitorScore == 0){
-                                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                        self.lspArray.append(lsp)
-                                        count = count+1
-                                    }
-                                } else {
-                                    if (Swift.abs(Double(bet)!) > Double(lsp.localScore + lsp.visitorScore)) {
-                                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                        lspArray.append(lsp)
-                                        count = count+1
-                                    }
+                            } else if (Double(bet) == -8.8) {
+                                //skor alarmı - genericte buraya hiç girmeyecek silinebilir
+                                //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                lspArray.append(lsp)
+                                count = count+1
+                            } else if (Double(bet) == -9.9) {
+                                if (lsp.localScore == 0 && lsp.visitorScore == 0) {
+                                    //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                    lspArray.append(lsp)
+                                    count = count+1
                                 }
-                            } else if (spnPos == -3) {
-                                // half time
-                                if (lsp.minute < 45 && lsp.minute != 0) {
-                                    if (Double(bet) == 1.1) {
-                                        if (lsp.localScore == 0 || lsp.visitorScore == 0) {
-                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                            lspArray.append(lsp)
-                                            count = count+1
-                                        }
-                                    } else if (Double(bet) == -1.1) {
-                                        if (lsp.localScore == 0 || lsp.visitorScore == 0) {
-                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                            lspArray.append(lsp)
-                                            count = count+1
-                                        }
-                                    } else if (Double(bet) == -9.9) {
-                                        if (lsp.localScore == 0 && lsp.visitorScore == 0) {
-                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                            lspArray.append(lsp)
-                                            count = count+1
-                                        }
-                                    } else {
-                                        if (Swift.abs(Double(bet)!) > Double(lsp.localScore + lsp.visitorScore)) {
-                                            //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
-                                            lspArray.append(lsp)
-                                            count = count+1
-                                        }
-                                    }
-                                }
-                            } else if (spnPos == -4) {
-                                // full time - genericte buraya hiç girmeyecek silinebilir
+                            } else if (Double(lsp.localScore + lsp.visitorScore) < Swift.abs(Double(bet)!)) {
                                 //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
                                 lspArray.append(lsp)
                                 count = count+1
                             }
                         }
+                    } else if (spnPos == -2) {
+                        // any time
+                        if (Double(bet) == 1.1) {
+                            if (lsp.localScore == 0 || lsp.visitorScore == 0) {
+                                //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                lspArray.append(lsp)
+                                count = count+1
+                            }
+                        } else if (Double(bet) == -1.1) {
+                            if (lsp.localScore == 0 || lsp.visitorScore == 0) {
+                                //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                lspArray.append(lsp)
+                                count = count+1
+                            }
+                        } else if (Double(bet) == -9.9) {
+                            if (lsp.localScore == 0 && lsp.visitorScore == 0){
+                                //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                self.lspArray.append(lsp)
+                                count = count+1
+                            }
+                        } else {
+                            if (Swift.abs(Double(bet)!) > Double(lsp.localScore + lsp.visitorScore)) {
+                                //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                lspArray.append(lsp)
+                                count = count+1
+                            }
+                        }
+                    } else if (spnPos == -3) {
+                        // half time
+                        if (lsp.minute < 45 && lsp.minute != 0) {
+                            if (Double(bet) == 1.1) {
+                                if (lsp.localScore == 0 || lsp.visitorScore == 0) {
+                                    //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                    lspArray.append(lsp)
+                                    count = count+1
+                                }
+                            } else if (Double(bet) == -1.1) {
+                                if (lsp.localScore == 0 || lsp.visitorScore == 0) {
+                                    //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                    lspArray.append(lsp)
+                                    count = count+1
+                                }
+                            } else if (Double(bet) == -9.9) {
+                                if (lsp.localScore == 0 && lsp.visitorScore == 0) {
+                                    //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                    lspArray.append(lsp)
+                                    count = count+1
+                                }
+                            } else {
+                                if (Swift.abs(Double(bet)!) > Double(lsp.localScore + lsp.visitorScore)) {
+                                    //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                                    lspArray.append(lsp)
+                                    count = count+1
+                                }
+                            }
+                        }
+                    } else if (spnPos == -4) {
+                        // full time - genericte buraya hiç girmeyecek silinebilir
+                        //insert(lsp.getLocalTeam(), lsp.getVisitorTeam(), spnPos, bet, lsp.getMatchId() + "");
+                        lspArray.append(lsp)
+                        count = count+1
                     }
-                    if (count == 0) {
-                        Toast.init(text: "No available matches", delay: 3, duration: 3).show()
-                    }
-        
+                }
+            }
+            if (count == 0) {
+                Toast.init(text: "No available matches", delay: 3, duration: 3).show()
+            }
+            
             let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId!
             //let userid = "e15d101c-aa1f-421a-83cb-d6230579624c"
             var langDef : String = "en";
@@ -375,8 +380,11 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             if (lang == "de" || lang=="es" || lang=="fr" || lang=="pt" || lang=="ru" || lang=="tr"){
                 langDef = lang!
             }
-                    
+            
+            
+            
             for i in 0 ..< lspArray.count {
+                
                 let aaaa  = [ "localteam" :lspArray[i].localTeam ,
                               "visitorteam" : lspArray[i].visitorTeam ,
                               "bet_minute" : spnPos,
@@ -385,221 +393,187 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
                               "deviceid" : userid,
                               "match_id" : lspArray[i].matchId
                     ] as [String : Any]
-           
-                
-                /*let multipleArrayPojo = multipleLspArray.init(localTeam: "\(lspArray[i].localTeam!)", visitorTeam: "\(lspArray[i].visitorTeam!)", bet_minute: "\(spnPos)", lang: "\(langDef)", bet: "\(bet)", match_id: "\(lspArray[i].matchId!)", deviceid: "\(userid)")*/
                 multipleArray.append(aaaa)
-            }
-             
-                    let url = URL(string: "http://opucukgonder.com/tipster/index.php/Service/groupAlertForios")!
-                    let headers    = [ "Content-Type" : "application/json"]
-                    let para : Parameters = [ "multipleLspArray" : multipleArray as AnyObject]
-                    Alamofire.request(url, method: .post, parameters: para, encoding: JSONEncoding.default, headers : headers)
-                        .responseString { response in
-
-                            print(response)
-                            print(response.result)
-
-                    }
                 
-//                    let url = URL(string: "http://opucukgonder.com/tipster/index.php/Service/groupAlertForios")!
-//                     let config = URLSessionConfiguration.default
-//                     var request = URLRequest(url: url)
-//                     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//                     request.httpMethod = "POST"
-//
-//                     let postString = "multipleLspArray=\(multipleArray)"
-//                     let session: URLSession = URLSession(configuration: config, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue())
-//                     request.httpBody = postString.data(using: .utf8)
-//                     let task = session.dataTask(with: request ){ data, response, error in
-//
-//                     if error != nil{
-//                     print("Get Request Error")
-//                     }
-//                     else{
-//
-//                     if data != nil {
-//
-//                     do {
-//                     let JsonResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
-//                     DispatchQueue.main.async {
-//                     let ressult : Bool  = (JsonResult["result"] != nil)
-//                     print(ressult)
-//                     let toast : Toast! = Toast(text: "\(count) Alarm Settled", delay: Delay.short, duration: Delay.long)
-//                     toast.show()
-//                     }
-//
-//                     } // do bitişi
-//                     catch {
-//                     print(error)
-//                     print("CATCH OLDU")
-//                     }
-//                     }
-//
-//                     }
-//
-//                     }
-//                     task.resume()
-                    
-                    //insert(local: localTeam, visitor: visitorTeam, spnPos: spnPos, bet: Double(bet)!, matchId: matchId)
-                    
+            }
+            
+            params = [ "multipleLspArray" : multipleArray as AnyObject]
+            self.postMultipleAlert()
+
+            
             
         }
-        }
-     else {
+        else {
+            
             //             let url = URL(string: "http://opucukgonder.com/tipster/index.php/Service/setAlert")!
-            //            let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId!
-            //            //let userid = "e15d101c-aa1f-421a-83cb-d6230579624c"
-            //
-            //            var langDef : String = "en";
-            //            let lang = Locale.current.languageCode
-            //            if (lang == "de" || lang=="es" || lang=="fr" || lang=="pt" || lang=="ru" || lang=="tr"){
-            //                langDef = lang!
-            //            }
-            //
-            //
-            //            let headers    = [ "Content-Type" : "application/json"]
-            //            let para : Parameters = [ "device_id" : userid, "match_id" : matchId , "localteam" : localTeam , "visitorteam" : visitorTeam, "bet" : bet, "bet_minute" : spnPos, "lang" : langDef ]
-            //            Alamofire.request(url, method: .post, parameters: para, encoding: JSONEncoding.default, headers : headers)
-            //                .responseString { response in
-            //
-            //                    print(response)
-            //                    print(response.result)
-            //
-            //            }
+            let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId!
+            //let userid = "e15d101c-aa1f-421a-83cb-d6230579624c"
             
-
-           
-             let url = URL(string: "http://opucukgonder.com/tipster/index.php/Service/setAlert")!
-             let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId!
-             //let userid = "e15d101c-aa1f-421a-83cb-d6230579624c"
-             
-             var langDef : String = "en";
-             let lang = Locale.current.languageCode
-             if (lang == "de" || lang=="es" || lang=="fr" || lang=="pt" || lang=="ru" || lang=="tr"){
-             langDef = lang!
-             }
-             let postString = "device_id=\(userid)&match_id=\(matchId)&localteam=\(localTeam)&visitorteam=\(visitorTeam)&bet=\(bet)&bet_minute=\(spnPos)&lang=\(langDef)"
-             
-             
-            let config = URLSessionConfiguration.default
-            var request = URLRequest(url: url)
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            request.httpMethod = "POST"
-             
-           
-            let session: URLSession = URLSession(configuration: config, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue())
-            request.httpBody = postString.data(using: .utf8)
-            let task = session.dataTask(with: request ){ data, response, error in
-                
-                if error != nil{
-                    print("Get Request Error TEKLIIII")
-                }
-                else{
-                    
-                    if data != nil {
-                        
-                        do {
-                            let JsonResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
-                            DispatchQueue.main.async {
-                                let ressult : Bool  = (JsonResult["result"] != nil)
-                                print("\(ressult) TEKLI ")
-                            }
-                            
-                        } // do bitişi
-                        catch {
-                            print("\(error) TEKLI ERROR")
-                            print("CATCH OLDU")
-                        }
-                    }
-                    
-                }
-                
+            var langDef : String = "en";
+            let lang = Locale.current.languageCode
+            if (lang == "de" || lang=="es" || lang=="fr" || lang=="pt" || lang=="ru" || lang=="tr"){
+                langDef = lang!
             }
-            task.resume()
             
-            //insert(local: localTeam, visitor: visitorTeam, spnPos: spnPos, bet: Double(bet)!,matchId: matchId)
-        
+            self.postRequest(userid: userid, matchId: matchId, localTeam: localTeam, visitorTeam: visitorTeam, bet: bet, spnPos: spnPos, langDef: langDef)
+            
         }
     }
-        
-        func insert(local : String, visitor : String, spnPos : Int, bet : Double , matchId : Int) {
+    
+    func  postRequest(userid : String, matchId:Int,localTeam : String, visitorTeam:String,bet:String,spnPos:Int,langDef:String) {
+        let link = "http://opucukgonder.com/tipster/index.php/Service/setAlert"
+        let queryString : [String : AnyObject] = [
+            "device_id"     : userid        as AnyObject,
+            "match_id"      : matchId       as AnyObject,
+            "localteam"     : localTeam     as AnyObject,
+            "visitorteam"   : visitorTeam   as AnyObject,
+            "bet"           : bet           as AnyObject,
+            "bet_minute"    : spnPos        as AnyObject,
+            "lang"          : langDef       as AnyObject
             
-            var myMatchList = [Int]()
-            _  = DBHelper.shared.saveData(localteam: local, visitorteam: visitor, alarmmin: spnPos, bet: Double(bet), matchid: matchId)
-            let def = UserDefaults.standard
-            if let temp = def.array(forKey: "myMatchList") as? [Int]  {
-                myMatchList = temp
+        ]
+        
+        
+        Alamofire.request(link, method: .post, parameters: queryString,encoding: JSONEncoding.default, headers: nil).responseJSON {
+            response in
+            switch response.result {
+            case .success:
+                let arrRes = response.value as! Dictionary<String,AnyObject>
+                //                let arrRes = response.value as! [[String:AnyObject]]
+                self.responseArray = [arrRes] // Dictionary yaptığımızda Köşeli parantez ekledi
+                
+                if self.responseArray.count > 0 {
+                    for i in 0..<self.responseArray.count {
+                        let cols = self.responseArray[i]
+                        let mArray = self.getResponse(cols)
+                        self.datas.add(mArray)
+                    }
+                }
+                break
+            case .failure(let error):
+                
+                print(error)
+                print("internet yok")
             }
-            myMatchList.append(matchId)
-            def.set(myMatchList, forKey: "myMatchList")
-            def.synchronize()
-      
-  
         }
+    }
+    func getResponse(_ array: [String:AnyObject]) -> AlertObject  {
+        let lstResult : AlertObject = AlertObject()
+        let col = array
+        if col["result"] is NSNull {
+            //            print("status is null")
+        }
+        else{
+            lstResult.result            = (col["result"]         as? Bool)!
+        }
+        return lstResult
+    }
+    
+    
+    func  postMultipleAlert() {
+        let link = "http://opucukgonder.com/tipster/index.php/Service/groupAlertForios"
+        let headers: HTTPHeaders = ["Content-Type": "application/json"]
+        Alamofire.request(link, method: .post, parameters: params , encoding: JSONEncoding.default, headers: headers).responseJSON {
+            response in
+            switch response.result {
+            case .success:
+
+                print(response.result)
+                print("Çoklu Alarm kuruldu")
+
+                break
+            case .failure(let error):
+                
+                print(error)
+                print("internet yok")
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    func insert(local : String, visitor : String, spnPos : Int, bet : Double , matchId : Int) {
+        
+        var myMatchList = [Int]()
+        _  = DBHelper.shared.saveData(localteam: local, visitorteam: visitor, alarmmin: spnPos, bet: Double(bet), matchid: matchId)
+        let def = UserDefaults.standard
+        if let temp = def.array(forKey: "myMatchList") as? [Int]  {
+            myMatchList = temp
+        }
+        myMatchList.append(matchId)
+        def.set(myMatchList, forKey: "myMatchList")
+        def.synchronize()
+        
+        
+    }
     func backgroundTransparent(){
         
         btts_yes.backgroundColor = .clear
         btts_yes.layer.borderWidth = 1
         btts_yes.layer.borderColor = UIColor.white.cgColor
         
-    btts_no.backgroundColor = .clear
-    btts_no.layer.borderWidth = 1
-    btts_no.layer.borderColor = UIColor.white.cgColor
+        btts_no.backgroundColor = .clear
+        btts_no.layer.borderWidth = 1
+        btts_no.layer.borderColor = UIColor.white.cgColor
         
-    score.backgroundColor = .clear
-    score.layer.borderWidth = 1
-    score.layer.borderColor = UIColor.white.cgColor
+        score.backgroundColor = .clear
+        score.layer.borderWidth = 1
+        score.layer.borderColor = UIColor.white.cgColor
         
-    noGoal.backgroundColor = .clear
-    noGoal.layer.borderWidth = 1
-    noGoal.layer.borderColor = UIColor.white.cgColor
-
-    arti05.backgroundColor = .clear
-    arti05.layer.borderWidth = 1
-    arti05.layer.borderColor = UIColor.white.cgColor
+        noGoal.backgroundColor = .clear
+        noGoal.layer.borderWidth = 1
+        noGoal.layer.borderColor = UIColor.white.cgColor
         
-    arti15.backgroundColor = .clear
-    arti15.layer.borderWidth = 1
-    arti15.layer.borderColor = UIColor.white.cgColor
+        arti05.backgroundColor = .clear
+        arti05.layer.borderWidth = 1
+        arti05.layer.borderColor = UIColor.white.cgColor
         
-    arti25.backgroundColor = .clear
-    arti25.layer.borderWidth = 1
-    arti25.layer.borderColor = UIColor.white.cgColor
+        arti15.backgroundColor = .clear
+        arti15.layer.borderWidth = 1
+        arti15.layer.borderColor = UIColor.white.cgColor
         
-    arti35.backgroundColor = .clear
-    arti35.layer.borderWidth = 1
-    arti35.layer.borderColor = UIColor.white.cgColor
+        arti25.backgroundColor = .clear
+        arti25.layer.borderWidth = 1
+        arti25.layer.borderColor = UIColor.white.cgColor
         
-    arti45.backgroundColor = .clear
-    arti45.layer.borderWidth = 1
-    arti45.layer.borderColor = UIColor.white.cgColor
+        arti35.backgroundColor = .clear
+        arti35.layer.borderWidth = 1
+        arti35.layer.borderColor = UIColor.white.cgColor
         
-    arti55.backgroundColor = .clear
-    arti55.layer.borderWidth = 1
-    arti55.layer.borderColor = UIColor.white.cgColor
+        arti45.backgroundColor = .clear
+        arti45.layer.borderWidth = 1
+        arti45.layer.borderColor = UIColor.white.cgColor
         
-    eksi15.backgroundColor = .clear
-    eksi15.layer.borderWidth = 1
-    eksi15.layer.borderColor = UIColor.white.cgColor
+        arti55.backgroundColor = .clear
+        arti55.layer.borderWidth = 1
+        arti55.layer.borderColor = UIColor.white.cgColor
         
-    eksi25.backgroundColor = .clear
-    eksi25.layer.borderWidth = 1
-    eksi25.layer.borderColor = UIColor.white.cgColor
+        eksi15.backgroundColor = .clear
+        eksi15.layer.borderWidth = 1
+        eksi15.layer.borderColor = UIColor.white.cgColor
         
-    eksi35.backgroundColor = .clear
-    eksi35.layer.borderWidth = 1
-    eksi35.layer.borderColor = UIColor.white.cgColor
+        eksi25.backgroundColor = .clear
+        eksi25.layer.borderWidth = 1
+        eksi25.layer.borderColor = UIColor.white.cgColor
         
-    eksi45.backgroundColor = .clear
-    eksi45.layer.borderWidth = 1
-    eksi45.layer.borderColor = UIColor.white.cgColor
+        eksi35.backgroundColor = .clear
+        eksi35.layer.borderWidth = 1
+        eksi35.layer.borderColor = UIColor.white.cgColor
         
-    eksi55.backgroundColor = .clear
-    eksi55.layer.borderWidth = 1
-    eksi55.layer.borderColor = UIColor.white.cgColor
+        eksi45.backgroundColor = .clear
+        eksi45.layer.borderWidth = 1
+        eksi45.layer.borderColor = UIColor.white.cgColor
         
-    set_Alert.backgroundColor = .clear
+        eksi55.backgroundColor = .clear
+        eksi55.layer.borderWidth = 1
+        eksi55.layer.borderColor = UIColor.white.cgColor
+        
+        set_Alert.backgroundColor = .clear
         
         
         

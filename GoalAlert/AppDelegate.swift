@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
    
         
-        mS.StartTimer()
+        //mS.StartTimer()
      
         //NotificationCenter.default.addObserver(self, selector:#selector(AppDelegate.applicationWillTerminate(_:)), name:NSNotification.Name.UIApplicationWillTerminate, object:nil)
         

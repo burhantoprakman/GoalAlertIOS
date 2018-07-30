@@ -280,6 +280,7 @@
 		6346852F20A1021F003BCE1D /* success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6346852C20A1021F003BCE1D /* success.wav */; };
 		6346EE25201248E5004D1D5E /* SettingssVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346EE24201248E5004D1D5E /* SettingssVC.swift */; };
 		634E19E220BFD31A0022DC3C /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 634E19E120BFD31A0022DC3C /* NetworkExtension.framework */; };
+		634E99092105EABA0092427E /* AlertObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634E99082105EABA0092427E /* AlertObject.swift */; };
 		634FB8C41FE00B11007CFF07 /* ResultPojo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634FB8C31FE00B11007CFF07 /* ResultPojo.swift */; };
 		634FB8C61FE00DCE007CFF07 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634FB8C51FE00DCE007CFF07 /* ResultCell.swift */; };
 		634FE08020ACC8270069EFA6 /* goalcaf.caf in Resources */ = {isa = PBXBuildFile; fileRef = 634FE07F20ACC8270069EFA6 /* goalcaf.caf */; };
@@ -628,6 +629,7 @@
 		6346852C20A1021F003BCE1D /* success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = success.wav; sourceTree = "<group>"; };
 		6346EE24201248E5004D1D5E /* SettingssVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingssVC.swift; sourceTree = "<group>"; };
 		634E19E120BFD31A0022DC3C /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		634E99082105EABA0092427E /* AlertObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertObject.swift; sourceTree = "<group>"; };
 		634FB8C31FE00B11007CFF07 /* ResultPojo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultPojo.swift; sourceTree = "<group>"; };
 		634FB8C51FE00DCE007CFF07 /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		634FE07F20ACC8270069EFA6 /* goalcaf.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = goalcaf.caf; sourceTree = "<group>"; };
@@ -1014,6 +1016,7 @@
 		635AC03E1FE294A7002D21F4 /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
+				6335DD15206BC117001D8C0E /* CreateAlertVC.swift */,
 				638AA94A1FD56CA300BB37DB /* LiveScores.swift */,
 				638AA94C1FD56CB400BB37DB /* Results.swift */,
 				638AA94E1FD56CC600BB37DB /* NextMatches.swift */,
@@ -1093,7 +1096,6 @@
 			children = (
 				6386517C200CBDC90049C651 /* GoalAlert.entitlements */,
 				6335DD1F206ED423001D8C0E /* Default-568h.png */,
-				6335DD15206BC117001D8C0E /* CreateAlertVC.swift */,
 				63865167200BA5C40049C651 /* images */,
 				637F243720076CBF00F57CF9 /* sounds */,
 				6300997C1FFBA9EA005BFE13 /* flag */,
@@ -1104,6 +1106,7 @@
 				634FE08220ACC82E0069EFA6 /* successcaf.caf */,
 				634FE07F20ACC8270069EFA6 /* goalcaf.caf */,
 				638AA9331FD567E000BB37DB /* AppDelegate.swift */,
+				634E99082105EABA0092427E /* AlertObject.swift */,
 				635F7BED1FEA8CAD007C7345 /* MyService.swift */,
 				6346EE24201248E5004D1D5E /* SettingssVC.swift */,
 				63ED60441FFF877C00980CC3 /* DBHelper.swift */,
@@ -1560,12 +1563,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-GoalAlert/Pods-GoalAlert-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1688,6 +1693,7 @@
 				634FB8C41FE00B11007CFF07 /* ResultPojo.swift in Sources */,
 				638AA94D1FD56CB400BB37DB /* Results.swift in Sources */,
 				636438761FE18D69009D70C4 /* Extensions.swift in Sources */,
+				634E99092105EABA0092427E /* AlertObject.swift in Sources */,
 				6346EE25201248E5004D1D5E /* SettingssVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

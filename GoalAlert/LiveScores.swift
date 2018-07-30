@@ -62,6 +62,7 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
     var isSearching : Bool = false
     var interstitial: GADInterstitial!
     var toast1: Toast = Toast(text: "Please Wait", delay: Delay.short, duration: Delay.long)
+    var ctTimer : Timer!
 
     
    lazy var refreshControl: UIRefreshControl = {
@@ -232,7 +233,8 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
         
         //Date Func
         date()
-        getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLiveNew"))
+        //getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLiveNew"))
+        ctTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(update), userInfo: nil, repeats: true)
       
         
     }
@@ -329,15 +331,19 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
     override func viewWillAppear(_ animated: Bool) {
         getLiveMatches(url : URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLiveNew"))
     }
-
+    
+    
+    func update() {
+        getLiveMatches(url: URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLiveNew"))
+    }
    
     func getLiveMatches(url : URL!){
        
         var liveArray  = [LiveScorePojo]()
-        let userid = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId!
+        let userid : String = OneSignal.getPermissionSubscriptionState().subscriptionStatus.userId!
         let config = URLSessionConfiguration.default
         var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         let postString = "deviceid=\(userid)"
         let session: URLSession = URLSession(configuration: config, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue())
@@ -691,7 +697,8 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
                          self.liveScoreTableView.reloadData()
                             }
                         self.refreshControl.endRefreshing()
-                        self.getLiveMatches(url:  URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLiveNew"))
+                        //self.getLiveMatches(url:  URL(string: "http://opucukgonder.com/tipster/index.php/Service/lastLiveNew"))
+            
                     }
                
                    
@@ -717,6 +724,8 @@ class LiveScores: UIViewController , UITableViewDelegate , UITableViewDataSource
         }
       
     }
+    
+    
     
     
 
