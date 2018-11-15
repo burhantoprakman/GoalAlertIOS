@@ -95,6 +95,7 @@ class CreateAlertVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             if(Minute == 0){
                 create_Minute.text  = NSLocalizedString("ht", comment: "")
             }else{
+                
                 create_Minute.text = "\(String(Minute))'"
             }
             create_localTeam.text = String(localTeam)
